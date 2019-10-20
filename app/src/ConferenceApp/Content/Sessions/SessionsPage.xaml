@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Sessions"
+             x:Class="ConferenceApp.Content.Sessions.SessionsPage"
+             BackgroundColor="Transparent">
+    <ContentPage.BindingContext>
+        <local:SessionsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView
+            ItemsSource="{Binding Sessions}"
+            SelectionMode="Single"
+            HasUnevenRows="True"
+            BackgroundColor="Transparent"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Session">
+                    <ViewCell>
+                        <Frame BackgroundColor="Gray" Padding="5" Margin="10" CornerRadius="3" HasShadow="True" Visual="Material">
+                            <StackLayout Spacing="10">
+                                <Label Text="{Binding Title}" Style="{StaticResource TextHeadline}" VerticalOptions="End" />
+                                <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Spacing="5" Orientation="Horizontal">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Speaker">
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FirstName}" />
+                                                        <Span Text=" ">
+                                                        </Span>
+                                                        <Span Text="{Binding LastName}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                                <Label Text="{Binding StartsAt}" TextColor="White" FontSize="Large" Margin="5" VerticalOptions="End" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </ContentPage.Content>
+</ContentPage>

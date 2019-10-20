@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Speakers"
+             xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             x:Class="ConferenceApp.Content.Speakers.SpeakersPage">
+    <ContentPage.BindingContext>
+        <local:SpeakersViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Speakers}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Speaker">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <circle:CircleImage Source="{Binding ProfilePictureSmall}" />
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding FirstName}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding LastName}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
