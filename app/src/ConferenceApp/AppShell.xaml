@@ -15,7 +15,7 @@
         <Tab Title="Sessions">
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
-                                 Glyph="{x:Static styles:IconFont.ChalkboardTeacher}"
+                                 Glyph="{x:Static styles:IconFont.Calendar}"
                                  Color="White"
                                  Size="18" />
             </Tab.Icon>
