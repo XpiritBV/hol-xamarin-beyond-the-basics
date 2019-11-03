@@ -4,8 +4,10 @@
                     x:Class="ConferenceApp.Styles.LightTheme"
                     Source="DefaultTheme.xaml">
 
-    <Color x:Key="backgroundColor">#FFFFFFFF</Color>
+    <Color x:Key="BackgroundColor">#FFFFFFFF</Color>
+    <Color x:Key="NavigationBackground">#FFFFFFFF</Color>
 
+    <Color x:Key="TextNavigationColor">#FF000000</Color>
     <Color x:Key="TextPrimaryColor">#B0000000</Color>
     <Color x:Key="TextSecondaryColor">#80000000</Color>
     <Color x:Key="TextTernaryColor">#C8C8C8</Color>

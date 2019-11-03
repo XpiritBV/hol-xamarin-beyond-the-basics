@@ -7,39 +7,46 @@
        xmlns:speakers="clr-namespace:ConferenceApp.Content.Speakers"
        xmlns:local="clr-namespace:ConferenceApp.Views"
        xmlns:styles="clr-namespace:ConferenceApp.Styles"
+       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
        mc:Ignorable="d" Title="ConferenceApp"
        x:Class="ConferenceApp.AppShell">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.TitleColor" Value="{StaticResource TextNavigationColor}"/>
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationBackground}"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationBackground}" />
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
     <!-- Your Pages -->
-    <TabBar>
-        <Tab Title="Sessions">
+    <TabBar Style="{DynamicResource CurrentTheme}">
+        <Tab Title="Sessions" >
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.Calendar}"
-                                 Color="White"
                                  Size="18" />
             </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate sessions:SessionsPage}" />
+            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate sessions:SessionsPage}" />
         </Tab>
         <Tab Title="Speakers">
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.UserFriends}"
-                                 Color="White"
                                  Size="18" />
-
             </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
+            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
         </Tab>
         <Tab Title="About">
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.InfoCircle}"
-                                 Color="White"
                                  Size="18" />
-
             </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
     </TabBar>
 

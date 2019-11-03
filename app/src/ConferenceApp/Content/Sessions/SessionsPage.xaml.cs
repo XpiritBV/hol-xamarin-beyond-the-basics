@@ -8,6 +8,7 @@ namespace ConferenceApp.Content.Sessions
     {
         public SessionsPage()
         {
+            BindingContext = new SessionsViewModel();
             InitializeComponent();
         }
     }
