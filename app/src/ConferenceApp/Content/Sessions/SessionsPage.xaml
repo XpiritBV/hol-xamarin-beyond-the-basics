@@ -8,9 +8,9 @@
              xmlns:styles="clr-namespace:ConferenceApp.Styles"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              x:Class="ConferenceApp.Content.Sessions.SessionsPage"
-             ios:Page.UseSafeArea="True"
-             Title="Sessions"
-             BackgroundColor="Transparent">
+             ios:NavigationPage.PrefersLargeTitles="True"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <local:SessionsViewModel/>
@@ -25,39 +25,41 @@
                 EmptyView="Loading sessions..."
                 ItemSizingStrategy="MeasureAllItems"
                 IsGrouped="True"
-                SelectedItem="{Binding SelectedSession}"
-                >
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectSessionCommand}">
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="5">
-                            <Label Text="{x:Static styles:IconFont.Circle}" VerticalOptions="Center" FontFamily="{StaticResource FontAwesome}" Style="{StaticResource TextSmallCaption}"/>
-                            <Label Text="{Binding GroupName}" Style="{StaticResource TextTitle}" VerticalOptions="Center" />
-                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" Color="{StaticResource TextPrimaryColor}" HeightRequest="2" />
+                            <Label Text="{x:Static styles:IconFont.Circle}" VerticalOptions="Center" FontFamily="{StaticResource FontAwesome}" FontSize="6" Style="{DynamicResource TextSubheadSecondary}"/>
+                            <Label Text="{Binding GroupName}" Style="{DynamicResource TextSubheadSecondary}" VerticalOptions="Center" />
+                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" Color="{DynamicResource TextSecondaryColor}" HeightRequest="2" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.GroupFooterTemplate>
                     <DataTemplate>
-                        <BoxView Color="Red"></BoxView>
+                        <StackLayout></StackLayout>
                     </DataTemplate>
                 </CollectionView.GroupFooterTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
-                            <Frame BackgroundColor="Gray"
+                            <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
                                    CornerRadius="10"
                                    HasShadow="True"
-                                   Visual="Material">
+                                   Visual="Material"
+                                   InputTransparent="True">
                                 <StackLayout Spacing="10">
-                                    <Label Text="{Binding Title}" Style="{StaticResource TextHeadLine}" />
-                                    <Label Text="{Binding Room}" Style="{StaticResource TextBody}" />
+                                    <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}" />
+                                    <Label Text="{Binding Room}" Style="{DynamicResource TextBody}" />
                                     <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Orientation="Horizontal" Margin="15,0,0,0">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="models:Speaker">
-                                                <circle:CircleImage HeightRequest="35" Margin="-15,0,0,0" Source="{Binding ProfilePictureSmall}" BorderColor="{StaticResource TextPrimaryColor}" BorderThickness="2"></circle:CircleImage>
+                                                <circle:CircleImage HeightRequest="35" Margin="-15,0,0,0" Source="{Binding ProfilePictureSmall}" BorderColor="{DynamicResource TextPrimaryColor}" BorderThickness="2"></circle:CircleImage>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
@@ -65,7 +67,7 @@
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="models:Speaker">
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Style="{StaticResource TextCaptionSecondary}" VerticalOptions="Center">
+                                                    <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
                                                         <Label.FormattedText>
                                                             <FormattedString>
                                                                 <Span Text="{Binding FirstName}" />
@@ -78,7 +80,6 @@
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
-                                    <Label Text="{Binding StartsAt}" TextColor="White" FontSize="Large" Margin="5" VerticalOptions="End" />
                                 </StackLayout>
                             </Frame>
                         </Grid>

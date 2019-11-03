@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
@@ -16,6 +15,7 @@ namespace ConferenceApp.Content.Sessions
 
         public SessionsViewModel()
         {
+            Title = "Sessions";
             this.sessionStore = DependencyService.Get<ISessionStore>();
             LoadSessions().SafeFireAndForget(false, (ex) => Console.WriteLine(ex));
         }
@@ -46,6 +46,30 @@ namespace ConferenceApp.Content.Sessions
         {
             get { return _sessions; }
             set { SetProperty(ref _sessions, value); }
+        }
+
+        private Session selectedSession;
+        public Session SelectedSession
+        {
+            get { return selectedSession; }
+            set
+            {
+                SetProperty(ref selectedSession, value);
+            }
+        }
+
+        private IAsyncCommand selectSessionCommand;
+        public IAsyncCommand SelectSessionCommand => selectSessionCommand ?? (selectSessionCommand = new AsyncCommand(NavigateToSession));
+
+        private async Task NavigateToSession()
+        {
+            if (SelectedSession == null)
+                return;
+
+            var session = SelectedSession;
+            SelectedSession = null;
+
+            await Shell.Current.Navigation.PushAsync(new SessionDetailPage(new SessionDetailViewModel(session)));
         }
     }
 }

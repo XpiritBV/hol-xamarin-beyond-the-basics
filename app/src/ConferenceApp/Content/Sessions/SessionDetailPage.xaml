@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Sessions"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="ConferenceApp.Content.Sessions.SessionDetailPage"
+             Visual="Material"
+             Title="Session"
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             >
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="20">
+                <Frame BackgroundColor="{DynamicResource CardBackgroundColor}" Padding="30">
+                    <Label Text="{Binding Session.Title}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Style="{DynamicResource TextHeadLine}" />
+                </Frame>
+
+                <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding FormattedSessionTime}" />
+                            <Span Text=" in " />
+                            <Span Text="{Binding Session.Room}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text="{Binding Session.Description}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{DynamicResource TextBody}" />
+
+                <StackLayout BindableLayout.ItemsSource="{Binding Session.Speakers}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="20" BindableLayout.ItemsSource="{Binding Session.Speakers}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <circle:CircleImage Aspect="AspectFill" Grid.Column="0" Source="{Binding ProfilePictureSmall}" />
+                                <StackLayout Orientation="Horizontal" Grid.Column="1">
+                                    <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding FirstName}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding LastName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

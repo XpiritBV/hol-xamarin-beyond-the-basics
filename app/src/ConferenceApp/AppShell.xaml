@@ -9,28 +9,29 @@
        xmlns:styles="clr-namespace:ConferenceApp.Styles"
        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
        mc:Ignorable="d" Title="ConferenceApp"
-       x:Class="ConferenceApp.AppShell">
+       x:Class="ConferenceApp.AppShell"
+       ios:NavigationPage.PrefersLargeTitles="True">
 
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.TitleColor" Value="{StaticResource TextNavigationColor}"/>
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationBackground}"/>
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationBackground}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource TextNavigationColor}"/>
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource NavigationBackground}"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource NavigationBackground}" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
 
     <!-- Your Pages -->
-    <TabBar Style="{DynamicResource CurrentTheme}">
-        <Tab Title="Sessions" >
+    <TabBar>
+        <Tab Title="Sessions">
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.Calendar}"
-                                 Size="18" />
+                                 Size="{StaticResource SizeTabIcon}" />
             </Tab.Icon>
-            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate sessions:SessionsPage}" />
+            <ShellContent Route="sessions" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate sessions:SessionsPage}" />
         </Tab>
         <Tab Title="Speakers">
             <Tab.Icon>
@@ -38,7 +39,7 @@
                                  Glyph="{x:Static styles:IconFont.UserFriends}"
                                  Size="18" />
             </Tab.Icon>
-            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
+            <ShellContent Route="speakers" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
         </Tab>
         <Tab Title="About">
             <Tab.Icon>
@@ -46,7 +47,7 @@
                                  Glyph="{x:Static styles:IconFont.InfoCircle}"
                                  Size="18" />
             </Tab.Icon>
-            <ShellContent ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent Route="about" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
     </TabBar>
 

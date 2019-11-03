@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using AsyncAwaitBestPractices;
+using ConferenceApp.Contracts.Models;
 using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions

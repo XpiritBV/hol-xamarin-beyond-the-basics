@@ -30,7 +30,7 @@
 
     <FontImageSource x:Key="IconSessions"
                      FontFamily="{StaticResource FontAwesome}"
-                     Glyph="{x:Static app:IconFont.ChalkboardTeacher}"
+                     Glyph="{x:Static app:IconFont.Calendar}"
                      Size="{StaticResource SizeTabIcon}"
                      Color="{StaticResource ColorTabIcon}" />
 
