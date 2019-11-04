@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Speakers"
+             xmlns:model="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             x:Class="ConferenceApp.Content.Speakers.SpeakerDetailPage"
+             Visual="Material"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource BackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <local:SpeakerDetailViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="{Binding Speaker.ProfilePicture}" />
+            <Label Style="{DynamicResource TextHeadLine}" HorizontalTextAlignment="Center" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Speaker.FirstName}" />
+                        <Span Text=" " />
+                        <Span Text="{Binding Speaker.LastName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,8 +8,7 @@
              x:Class="ConferenceApp.Content.Sessions.SessionDetailPage"
              Visual="Material"
              Title="Session"
-             BackgroundColor="{DynamicResource BackgroundColor}"
-             >
+             BackgroundColor="{DynamicResource BackgroundColor}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10" Spacing="20">
