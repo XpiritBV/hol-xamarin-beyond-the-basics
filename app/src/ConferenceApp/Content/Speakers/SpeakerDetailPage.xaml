@@ -9,13 +9,9 @@
              Title="{Binding Title}"
              BackgroundColor="{DynamicResource BackgroundColor}">
 
-    <d:ContentPage.BindingContext>
-        <local:SpeakerDetailViewModel />
-    </d:ContentPage.BindingContext>
-
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding Speaker.ProfilePicture}" />
+            <Image Source="{Binding Speaker.ProfilePicture}" Aspect="AspectFit" />
             <Label Style="{DynamicResource TextHeadLine}" HorizontalTextAlignment="Center" VerticalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
