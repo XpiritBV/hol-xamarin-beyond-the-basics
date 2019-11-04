@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -30,6 +31,16 @@ namespace ConferenceApp.Services
             }
 
             return Enumerable.Empty<Session>();
+        }
+
+        public async Task<IEnumerable<Session>> GetSessionsForSpeaker(Guid speakerId)
+        {
+            // TODO: this is not optimal, need a way to find the sessions that
+            // belong to a speaker only
+            var sessions = await GetSessions();
+            return sessions
+                .Where(s => s.Speakers.Any(s => s.Id == speakerId))
+                .ToList();
         }
 
         public async Task<IEnumerable<Speaker>> GetSpeakers()

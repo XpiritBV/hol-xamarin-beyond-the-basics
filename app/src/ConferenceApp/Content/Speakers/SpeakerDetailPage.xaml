@@ -4,23 +4,59 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:local="clr-namespace:ConferenceApp.Content.Speakers"
              xmlns:model="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
-             x:Class="ConferenceApp.Content.Speakers.SpeakerDetailPage"
+             xmlns:pc="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ConferenceApp.Content.Speakers.SpeakerDetailPage"             
              Visual="Material"
              Title="{Binding Title}"
              BackgroundColor="{DynamicResource BackgroundColor}">
 
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="{Binding Speaker.ProfilePicture}" Aspect="AspectFit" />
-            <Label Style="{DynamicResource TextHeadLine}" HorizontalTextAlignment="Center" VerticalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding Speaker.FirstName}" />
-                        <Span Text=" " />
-                        <Span Text="{Binding Speaker.LastName}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <pc:PancakeView BackgroundColor="{DynamicResource CardBackgroundColor}" CornerRadius="0,0,150,150" Elevation="5" IsClippedToBounds="True" HeightRequest="300" HorizontalOptions="FillAndExpand">
+                    <Image Source="{Binding Speaker.ProfilePicture}" Aspect="AspectFill" />
+                </pc:PancakeView>
+                <Label Style="{DynamicResource TextHeadLine}" HorizontalTextAlignment="Center" VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Speaker.FirstName}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Speaker.LastName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="10,0" Text="{Binding Speaker.TagLine}" Style="{DynamicResource TextSubheadSecondary}" HorizontalTextAlignment="Center"/>
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}">
+                    <StackLayout>
+                        <Label Text="bio" HorizontalTextAlignment="Start" Style="{DynamicResource TextCaptionSecondary}"/>
+                        <Label Text="{Binding Speaker.Bio}" Style="{DynamicResource TextBody}"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}">
+                    <StackLayout>
+                        <Label Text="{Binding Speaker.FirstName, StringFormat='{0}\&apos;s sessions'}" HorizontalTextAlignment="Start" Style="{DynamicResource TextCaptionSecondary}"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Sessions}" Spacing="10">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="model:Session">
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}"/>
+                                        <Label Style="{DynamicResource TextCaptionSecondary}"
+                                               VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding StartsAt, StringFormat='{0:t}'}" />
+                                                    <Span Text=" in " />
+                                                    <Span Text="{Binding Room}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

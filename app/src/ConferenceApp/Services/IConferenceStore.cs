@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConferenceApp.Contracts.Models;
 
@@ -8,5 +9,6 @@ namespace ConferenceApp.Services
     {
         Task<IEnumerable<Session>> GetSessions();
         Task<IEnumerable<Speaker>> GetSpeakers();
+        Task<IEnumerable<Session>> GetSessionsForSpeaker(Guid speakerId);
     }
 }
