@@ -13,7 +13,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10" Spacing="20">
-                <Frame BackgroundColor="{DynamicResource CardBackgroundColor}" Padding="30">
+                <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
+                       Padding="30">
                     <Label Text="{Binding Session.Title}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
@@ -21,7 +22,9 @@
                            Style="{DynamicResource TextHeadLine}" />
                 </Frame>
 
-                <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center" HorizontalTextAlignment="Center">
+                <Label Style="{DynamicResource TextCaptionSecondary}"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{Binding FormattedSessionTime}" />
@@ -31,14 +34,14 @@
                     </Label.FormattedText>
                 </Label>
 
-                <Frame>
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}">
                     <Label Text="{Binding Session.Description}"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Start"
                             Style="{DynamicResource TextBody}" />
                 </Frame>
 
-                <Frame>
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}">
                     <StackLayout>
                         <Label Text="speakers" HorizontalTextAlignment="Center" Style="{DynamicResource TextCaptionSecondary}"/>
                         <StackLayout BindableLayout.ItemsSource="{Binding Session.Speakers}">
