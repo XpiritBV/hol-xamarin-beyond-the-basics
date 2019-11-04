@@ -4,22 +4,23 @@ using ConferenceApp.Contracts.Models;
 using MvvmHelpers;
 using AsyncAwaitBestPractices;
 using Xamarin.Forms;
+using ConferenceApp.Services;
 
 namespace ConferenceApp.Content.Speakers
 {
     public class SpeakersViewModel : ViewModels.BaseViewModel
     {
-        private readonly ISpeakerStore speakerStore;
+        private readonly IConferenceStore conferenceStore;
 
         public SpeakersViewModel()
         {
-            this.speakerStore = DependencyService.Get<ISpeakerStore>();
+            this.conferenceStore = DependencyService.Get<IConferenceStore>();
             LoadSpeakers().SafeFireAndForget(false, (ex) => Console.WriteLine(ex));
         }
 
         public async Task LoadSpeakers()
         {
-            var speakers = await speakerStore.GetSpeakers().ConfigureAwait(false);
+            var speakers = await conferenceStore.GetSpeakers().ConfigureAwait(false);
             Speakers.ReplaceRange(speakers);
         }
 

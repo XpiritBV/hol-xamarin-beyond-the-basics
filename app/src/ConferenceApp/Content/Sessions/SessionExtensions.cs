@@ -2,7 +2,6 @@
 using ConferenceApp.Contracts.Models;
 using ConferenceApp.Services;
 using System.Linq;
-using MvvmHelpers;
 using System;
 
 namespace ConferenceApp.Content.Sessions
@@ -26,7 +25,7 @@ namespace ConferenceApp.Content.Sessions
             return $"{day}, {startString}";
         }
 
-        public static IList<SessionGroup> FilterAndGroupByDate(this ICollection<Session> sessions, DateTime referenceDate)
+        public static IList<SessionGroup> FilterAndGroupByDate(this IEnumerable<Session> sessions, DateTime referenceDate)
         {
             //is not tba
             //has not started or has started and hasn't ended or ended 20 minutes ago
@@ -40,7 +39,7 @@ namespace ConferenceApp.Content.Sessions
             return grouped.ToList();
         }
 
-        public static IList<SessionGroup> FilterAndGroupByDate(this ICollection<Session> sessions)
+        public static IList<SessionGroup> FilterAndGroupByDate(this IEnumerable<Session> sessions)
         {
             return FilterAndGroupByDate(sessions, Clock.Now);
         }

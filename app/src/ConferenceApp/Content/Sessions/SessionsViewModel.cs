@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 using ConferenceApp.Contracts.Models;
+using ConferenceApp.Services;
 using MvvmHelpers;
 using Xamarin.Forms;
 
@@ -12,12 +13,12 @@ namespace ConferenceApp.Content.Sessions
 {
     public class SessionsViewModel : BaseViewModel
     {
-        private readonly ISessionStore sessionStore;
+        private readonly IConferenceStore conferenceStore;
 
         public SessionsViewModel()
         {
             Title = "Sessions";
-            this.sessionStore = DependencyService.Get<ISessionStore>();
+            conferenceStore = DependencyService.Get<IConferenceStore>();
             LoadSessions().SafeFireAndForget(false, (ex) => Console.WriteLine(ex));
         }
 
@@ -27,7 +28,7 @@ namespace ConferenceApp.Content.Sessions
         public async Task LoadSessions()
         {
             IsBusy = true;
-            var sessions = await sessionStore.GetSessions().ConfigureAwait(false);
+            var sessions = await conferenceStore.GetSessions().ConfigureAwait(false);
 
             SessionsGrouped = sessions.FilterAndGroupByDate();
 

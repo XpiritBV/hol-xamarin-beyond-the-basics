@@ -1,6 +1,5 @@
 ﻿using Xamarin.Forms;
-using ConferenceApp.Content.Sessions;
-using ConferenceApp.Content.Speakers;
+using ConferenceApp.Services;
 
 namespace ConferenceApp
 {
@@ -12,8 +11,7 @@ namespace ConferenceApp
         {
             InitializeComponent();
 
-            DependencyService.Register<ISessionStore, SessionStore>();
-            DependencyService.Register<ISpeakerStore, SpeakerStore>();
+            DependencyService.Register<IConferenceStore, ConferenceStore>();
 
             MainPage = new AppShell();
         }
