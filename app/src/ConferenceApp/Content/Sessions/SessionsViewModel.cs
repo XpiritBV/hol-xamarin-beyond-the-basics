@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
@@ -33,19 +34,13 @@ namespace ConferenceApp.Content.Sessions
             IsBusy = false;
         }
 
-        private IList<SessionGroup> _sessionsGrouped;
+        // BUG: if source is null at startup, Android will crash 
+        private IEnumerable<SessionGroup> _sessionsGrouped = Enumerable.Empty<SessionGroup>();
 
-        public IList<SessionGroup> SessionsGrouped
+        public IEnumerable<SessionGroup> SessionsGrouped
         {
             get { return _sessionsGrouped; }
             set { SetProperty(ref _sessionsGrouped, value); }
-        }
-
-        private IList<Session> _sessions;
-        public IList<Session> Sessions
-        {
-            get { return _sessions; }
-            set { SetProperty(ref _sessions, value); }
         }
 
         private Session selectedSession;

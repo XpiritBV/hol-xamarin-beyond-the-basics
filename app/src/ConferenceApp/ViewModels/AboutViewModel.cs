@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Input;
-
-using Xamarin.Forms;
+using AsyncAwaitBestPractices.MVVM;
+using Xamarin.Essentials;
 
 namespace ConferenceApp.ViewModels
 {
@@ -11,9 +10,9 @@ namespace ConferenceApp.ViewModels
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+            OpenWebCommand = new AsyncCommand(async () => await Launcher.OpenAsync(new Uri("https://xamarin.com/platform")));
         }
 
-        public ICommand OpenWebCommand { get; }
+        public IAsyncCommand OpenWebCommand { get; }
     }
 }
