@@ -6,6 +6,8 @@
 
     <Color x:Key="BackgroundColor">#FFFFFFFF</Color>
     <Color x:Key="NavigationBackground">#F2F2F7</Color>
+    <Color x:Key="ElementSelectedColor">#007BFF</Color>
+    <Color x:Key="ElementUnSelectedColor">#8E8E93</Color>
 
     <Color x:Key="TextNavigationColor">#FF000000</Color>
     <Color x:Key="TextPrimaryColor">#B0000000</Color>

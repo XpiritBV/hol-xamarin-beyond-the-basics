@@ -10,8 +10,6 @@
              Title="Session"
              BackgroundColor="{DynamicResource BackgroundColor}"
              >
-
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10" Spacing="20">
@@ -23,7 +21,7 @@
                            Style="{DynamicResource TextHeadLine}" />
                 </Frame>
 
-                <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center" HorizontalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{Binding FormattedSessionTime}" />
@@ -33,35 +31,42 @@
                     </Label.FormattedText>
                 </Label>
 
-                <Label Text="{Binding Session.Description}"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
-                        Style="{DynamicResource TextBody}" />
+                <Frame>
+                    <Label Text="{Binding Session.Description}"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Start"
+                            Style="{DynamicResource TextBody}" />
+                </Frame>
 
-                <StackLayout BindableLayout.ItemsSource="{Binding Session.Speakers}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Grid ColumnSpacing="20" BindableLayout.ItemsSource="{Binding Session.Speakers}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <circle:CircleImage Aspect="AspectFill" Grid.Column="0" Source="{Binding ProfilePictureSmall}" />
-                                <StackLayout Orientation="Horizontal" Grid.Column="1">
-                                    <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding FirstName}" />
-                                                <Span Text=" " />
-                                                <Span Text="{Binding LastName}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="speakers" HorizontalTextAlignment="Center" Style="{DynamicResource TextCaptionSecondary}"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Session.Speakers}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnSpacing="20" BindableLayout.ItemsSource="{Binding Session.Speakers}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <circle:CircleImage Aspect="AspectFill" Grid.Column="0" Source="{Binding ProfilePictureSmall}" />
+                                        <StackLayout Orientation="Horizontal" Grid.Column="1">
+                                            <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FirstName}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding LastName}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -22,12 +22,22 @@
             Command="{Binding ReloadSessionsCommand}">
             <CollectionView
                 ItemsSource="{Binding SessionsGrouped}"
-                EmptyView="Loading sessions..."
                 ItemSizingStrategy="MeasureAllItems"
                 IsGrouped="True"
                 SelectionMode="Single"
                 SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
                 SelectionChangedCommand="{Binding SelectSessionCommand}">
+
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="Loading sessions..." />
+                    </StackLayout>
+                </CollectionView.EmptyView>
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
@@ -41,7 +51,8 @@
 
                 <CollectionView.GroupFooterTemplate>
                     <DataTemplate>
-                        <StackLayout></StackLayout>
+                        <!-- workaround for iOS bug where it shows a default view if there is no footer template -->
+                        <ContentView />
                     </DataTemplate>
                 </CollectionView.GroupFooterTemplate>
 

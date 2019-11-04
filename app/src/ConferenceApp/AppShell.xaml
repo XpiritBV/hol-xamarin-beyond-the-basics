@@ -16,6 +16,8 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.TitleColor" Value="{DynamicResource TextNavigationColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource ElementSelectedColor}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource ElementUnSelectedColor}" />
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource NavigationBackground}"/>
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource NavigationBackground}" />
             </Style>
@@ -29,7 +31,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.Calendar}"
-                                 Size="{StaticResource SizeTabIcon}" />
+                                 Size="{StaticResource SizeTabIcon}"
+                                 Color="White"/>
             </Tab.Icon>
             <ShellContent Route="sessions" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate sessions:SessionsPage}" />
         </Tab>
@@ -37,7 +40,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.UserFriends}"
-                                 Size="18" />
+                                 Size="18"
+                                 Color="White"/>
             </Tab.Icon>
             <ShellContent Route="speakers" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
         </Tab>
@@ -45,7 +49,8 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesome}"
                                  Glyph="{x:Static styles:IconFont.InfoCircle}"
-                                 Size="18" />
+                                 Size="18"
+                                 Color="White"/>
             </Tab.Icon>
             <ShellContent Route="about" ios:NavigationPage.IsNavigationBarTranslucent="True" ios:NavigationPage.PrefersLargeTitles="True" ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
