@@ -21,7 +21,7 @@ namespace ConferenceApp.Content.Speakers
         public SpeakerDetailViewModel(Speaker item) : this()
         {
             Speaker = item;
-            Title = $"{Speaker.FirstName} {Speaker.LastName}";
+            Title = $"{Speaker.FirstName}'s profile";
 
             LoadSessions().SafeFireAndForget();
         }

@@ -6,7 +6,8 @@
              xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
              x:Class="ConferenceApp.Content.Speakers.SpeakersPage"
              Visual="Material"
-             BackgroundColor="{DynamicResource BackgroundColor}">
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <local:SpeakersViewModel/>
