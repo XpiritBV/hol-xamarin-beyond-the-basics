@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -20,7 +20,6 @@
     <Compile Remove="Models\Item.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="Content\" />
     <Folder Include="Content\Sessions\" />
     <Folder Include="Styles\" />
@@ -31,5 +30,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Styles\DarkTheme.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="LocalConferenceStore.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalConferenceStore.json" />
   </ItemGroup>
 </Project>

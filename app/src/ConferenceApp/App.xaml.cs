@@ -11,8 +11,9 @@ namespace ConferenceApp
         {
             InitializeComponent();
 
-            DependencyService.Register<IConferenceStore, ConferenceStore>();
-
+            // DependencyService.Register<IConferenceStore, ConferenceStore>();
+            DependencyService.Register<IConferenceStore, LocalConferenceStore>();
+     
             MainPage = new AppShell();
         }
 
