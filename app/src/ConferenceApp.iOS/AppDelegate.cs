@@ -26,6 +26,7 @@ namespace ConferenceApp.iOS
 
             global::Xamarin.Forms.Forms.Init();
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
+            global::Xamarin.Forms.FormsMaterial.Init();
 
             LoadApplication(new App());
 

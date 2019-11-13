@@ -3,7 +3,8 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:sessions="clr-namespace:ConferenceApp.Content.Sessions"
             xmlns:speakers="clr-namespace:ConferenceApp.Content.Speakers"
-            x:Class="ConferenceApp.MainPage">
+            x:Class="ConferenceApp.MainPage"
+            Visual="Material">
 
     <TabbedPage.Children>
         <NavigationPage Title="Sessions">

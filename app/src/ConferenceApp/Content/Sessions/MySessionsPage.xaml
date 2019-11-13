@@ -8,7 +8,8 @@
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:styles="clr-namespace:ConferenceApp.Styles"
              Title="{Binding Title}"
-             BackgroundColor="{DynamicResource BackgroundColor}">
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             Visual="Material">
 
     <d:ContentPage.BindingContext>
         <local:MySessionsViewModel/>
