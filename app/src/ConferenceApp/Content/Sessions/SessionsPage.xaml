@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             x:Class="ConferenceApp.Content.Sessions.SessionsPage"
+             xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Sessions"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:styles="clr-namespace:ConferenceApp.Styles"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource BackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <local:SessionsViewModel/>
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SyncCommand}" Text="SYNC" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView
+            ItemsSource="{Binding Sessions}"
+            IsGroupingEnabled="False"
+            CachingStrategy="RecycleElement"
+            SelectionMode="Single"
+            ItemSelected="NavigateToSession"
+            HasUnevenRows="True"
+            IsRefreshing="{Binding IsBusy}"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding ReloadSessionsCommand}"
+            SelectedItem="{Binding SelectedSession, Mode=TwoWay}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Session">
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    InputTransparent="True">
+                                <StackLayout Spacing="10">
+                                    <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}" />
+                                    <Label Text="{Binding Room}" Style="{DynamicResource TextBody}" />
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Orientation="Horizontal" Margin="15,0,0,0">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Speaker">
+                                                <circle:CircleImage HeightRequest="35" Margin="-15,0,0,0" Source="{Binding ProfilePictureSmall}" BorderColor="{DynamicResource TextPrimaryColor}" BorderThickness="2"></circle:CircleImage>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Spacing="5" Orientation="Horizontal">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Speaker">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding FirstName}" />
+                                                                <Span Text=" " />
+                                                                <Span Text="{Binding LastName}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
