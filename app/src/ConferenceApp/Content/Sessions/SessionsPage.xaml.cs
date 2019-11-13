@@ -1,4 +1,5 @@
-﻿using ConferenceApp.Contracts.Models;
+﻿using System.Linq;
+using ConferenceApp.Contracts.Models;
 using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions
@@ -11,9 +12,9 @@ namespace ConferenceApp.Content.Sessions
             InitializeComponent();
         }
 
-        async void NavigateToSession(object sender, SelectedItemChangedEventArgs e)
+        async void NavigateToSession(object sender, SelectionChangedEventArgs e)
         {
-            var session = e.SelectedItem as Session;
+            var session = e.CurrentSelection.FirstOrDefault() as Session;
             await Navigation.PushAsync(new SessionDetailPage(session.Id));
         }
     }

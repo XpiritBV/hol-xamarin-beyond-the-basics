@@ -19,20 +19,47 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ListView
-                ItemsSource="{Binding Speakers}"
-                SelectionMode="Single"
-                SelectedItem="{Binding SelectedSpeaker, Mode=TwoWay}"
-                IsRefreshing="{Binding IsBusy}"
-                IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding ReloadSpeakersCommand}"
-                HasUnevenRows="True"
-                ItemSelected="NavigateToSpeaker"
-                Margin="10">
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding ReloadSpeakersCommand}">
+            <CollectionView
+                    ItemsSource="{Binding Speakers}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedSpeaker, Mode=TwoWay}"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    SelectionChanged="NavigateToSpeaker"
+                    Margin="10">
 
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Speaker">
-                    <ViewCell>
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="Loading speakers..."
+                               IsVisible="{Binding IsBusy}"/>
+
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="There are no speakers here :("
+                               IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     HorizontalItemSpacing="10"
+                                     VerticalItemSpacing="10"
+                                     SnapPointsType="Mandatory"
+                                     SnapPointsAlignment="Start"
+                                     />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Speaker">
                         <Frame InputTransparent="True"
                                 BackgroundColor="{DynamicResource CardBackgroundColor}"
                                 IsClippedToBounds="True" Padding="10">
@@ -61,9 +88,9 @@
                                 </StackLayout>
                             </Grid>
                         </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

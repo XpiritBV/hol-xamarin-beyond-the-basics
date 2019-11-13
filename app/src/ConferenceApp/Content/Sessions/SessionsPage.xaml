@@ -25,21 +25,53 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView
-            ItemsSource="{Binding Sessions}"
-            IsGroupingEnabled="False"
-            CachingStrategy="RecycleElement"
-            SelectionMode="Single"
-            ItemSelected="NavigateToSession"
-            HasUnevenRows="True"
-            IsRefreshing="{Binding IsBusy}"
-            IsPullToRefreshEnabled="True"
-            RefreshCommand="{Binding ReloadSessionsCommand}"
-            SelectedItem="{Binding SelectedSession, Mode=TwoWay}">
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding ReloadSessionsCommand}">
+            <CollectionView
+                ItemsSource="{Binding SessionsGrouped}"
+                IsGrouped="True"
+                SelectionMode="Single"
+                SelectionChanged="NavigateToSession"
+                ItemSizingStrategy="MeasureAllItems"
+                SelectedItem="{Binding SelectedSession, Mode=TwoWay}">
 
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Session">
-                    <ViewCell>
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="Loading sessions..."
+                               IsVisible="{Binding IsBusy}" />
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="No sessions here :("
+                               IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <Label Text="{x:Static styles:IconFont.Circle}" VerticalOptions="Center" FontFamily="{StaticResource FontAwesome}" FontSize="6" Style="{DynamicResource TextSubheadSecondary}"/>
+                            <Label Text="{Binding GroupName}" Style="{DynamicResource TextSubheadSecondary}" VerticalOptions="Center" />
+                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" Color="{DynamicResource TextSecondaryColor}" HeightRequest="2" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate>
+                        <!-- workaround for iOS bug where it shows a default view if there is no footer template -->
+                        <ContentView />
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Session">
                         <Grid Padding="10">
                             <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
                                     CornerRadius="10"
@@ -75,9 +107,9 @@
                                 </StackLayout>
                             </Frame>
                         </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

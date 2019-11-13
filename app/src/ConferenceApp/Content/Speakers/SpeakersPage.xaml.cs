@@ -1,5 +1,6 @@
 ﻿using ConferenceApp.Contracts.Models;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace ConferenceApp.Content.Speakers
 {
@@ -10,9 +11,9 @@ namespace ConferenceApp.Content.Speakers
             InitializeComponent();
         }
 
-        async void NavigateToSpeaker(object sender, SelectedItemChangedEventArgs e)
+        async void NavigateToSpeaker(object sender, SelectionChangedEventArgs e)
         {
-            var speaker = e.SelectedItem as Speaker;
+            var speaker = e.CurrentSelection.FirstOrDefault() as Speaker;
             await Navigation.PushAsync(new SpeakerDetailPage(speaker.Id));
         }
     }
