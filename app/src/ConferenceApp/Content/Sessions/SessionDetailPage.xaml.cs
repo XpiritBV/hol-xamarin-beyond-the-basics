@@ -4,9 +4,9 @@ namespace ConferenceApp.Content.Sessions
 {
     public partial class SessionDetailPage : ContentPage
     {
-        public SessionDetailPage(string sessionId)
+        public SessionDetailPage()
         {
-            BindingContext = new SessionDetailViewModel(sessionId);
+            BindingContext = new SessionDetailViewModel();
             InitializeComponent();
         }
 

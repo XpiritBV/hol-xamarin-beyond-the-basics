@@ -6,18 +6,18 @@ using ConferenceApp.Contracts;
 using ConferenceApp.Contracts.Models;
 using ConferenceApp.ViewModels;
 using Shiny;
+using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Speakers
 {
+    [QueryProperty(nameof(SpeakerId), "speakerId")]
     public class SpeakerDetailViewModel : BaseViewModel
     {
         readonly IConferenceStore conferenceStore;
 
-        public SpeakerDetailViewModel(Guid speakerId)
+        public SpeakerDetailViewModel()
         {
             conferenceStore = ShinyHost.Resolve<IConferenceStore>();
-
-            SpeakerId = speakerId.ToString();
         }
 
         private async Task LoadSpeakerDetails()

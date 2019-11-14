@@ -26,7 +26,7 @@
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedSpeaker, Mode=TwoWay}"
                     ItemSizingStrategy="MeasureFirstItem"
-                    SelectionChanged="NavigateToSpeaker"
+                    SelectionChangedCommand="{Binding SelectSpeakerCommand}"
                     Margin="10">
 
                 <CollectionView.EmptyView>

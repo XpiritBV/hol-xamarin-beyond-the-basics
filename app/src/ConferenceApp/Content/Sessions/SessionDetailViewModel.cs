@@ -6,18 +6,18 @@ using ConferenceApp.Contracts;
 using ConferenceApp.Contracts.Models;
 using ConferenceApp.ViewModels;
 using Shiny;
+using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions
 {
+    [QueryProperty(nameof(SessionId), "sessionId")]
     public class SessionDetailViewModel : BaseViewModel
     {
         private readonly IConferenceStore conferenceStore;
 
-        public SessionDetailViewModel(string sessionId)
+        public SessionDetailViewModel()
         {
             conferenceStore = ShinyHost.Resolve<IConferenceStore>();
-
-            SessionId = sessionId;
         }
 
         /// <summary>

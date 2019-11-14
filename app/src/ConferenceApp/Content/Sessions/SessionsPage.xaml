@@ -31,7 +31,7 @@
                 ItemsSource="{Binding SessionsGrouped}"
                 IsGrouped="True"
                 SelectionMode="Single"
-                SelectionChanged="NavigateToSession"
+                SelectionChangedCommand="{Binding SelectSessionCommand}"
                 ItemSizingStrategy="MeasureAllItems"
                 SelectedItem="{Binding SelectedSession, Mode=TwoWay}">
 

@@ -5,9 +5,9 @@ namespace ConferenceApp.Content.Speakers
 {
     public partial class SpeakerDetailPage : ContentPage
     {
-        public SpeakerDetailPage(Guid speakerId)
+        public SpeakerDetailPage()
         {
-            BindingContext = new SpeakerDetailViewModel(speakerId);
+            BindingContext = new SpeakerDetailViewModel();
             InitializeComponent();
         }
 

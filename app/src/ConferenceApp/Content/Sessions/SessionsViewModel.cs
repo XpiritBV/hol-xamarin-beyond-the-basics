@@ -10,6 +10,7 @@ using ConferenceApp.Contracts.Models;
 using ConferenceApp.Services;
 using MvvmHelpers;
 using Shiny;
+using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions
 {
@@ -74,6 +75,27 @@ namespace ConferenceApp.Content.Sessions
             set
             {
                 SetProperty(ref selectedSession, value);
+            }
+        }
+
+        private IAsyncCommand selectSessionCommand;
+        public IAsyncCommand SelectSessionCommand => selectSessionCommand ?? (selectSessionCommand = new AsyncCommand(NavigateToSession));
+
+        private async Task NavigateToSession()
+        {
+            try
+            {
+                if (SelectedSession == null)
+                    return;
+
+                var session = SelectedSession;
+                SelectedSession = null;
+
+                await Shell.Current.GoToAsync($"sessiondetail?sessionId={Uri.EscapeDataString(session.Id)}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 
