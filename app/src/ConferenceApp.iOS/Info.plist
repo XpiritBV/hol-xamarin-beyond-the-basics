@@ -51,5 +51,7 @@
 			<string>Assets.xcassets/AppIcon.appiconset/Spotlight</string>
 		</dict>
 	</array>
+	<key>NSCalendarsUsageDescription</key>
+	<string>For adding session reminders to your calendar</string>
 </dict>
 </plist>

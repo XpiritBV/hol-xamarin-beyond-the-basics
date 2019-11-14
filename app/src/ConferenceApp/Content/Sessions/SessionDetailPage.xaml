@@ -47,6 +47,9 @@
                         TextColor="{Binding IsFavorite, Converter={x:StaticResource FavoriteColorConverter}}">
                 </Button>
 
+                <Button Text="Add reminder to Calendar"
+                        Command="{Binding AddReminderToCalendar}"/>
+
                 <Frame BackgroundColor="{DynamicResource BackgroundColor}">
                     <Label Text="{Binding Session.Description}"
                             HorizontalOptions="Center"

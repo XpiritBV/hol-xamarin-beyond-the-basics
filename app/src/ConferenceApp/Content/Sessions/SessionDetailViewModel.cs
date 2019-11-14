@@ -14,10 +14,12 @@ namespace ConferenceApp.Content.Sessions
     public class SessionDetailViewModel : BaseViewModel
     {
         private readonly IConferenceStore conferenceStore;
+        private readonly ISetReminder setReminder;
 
         public SessionDetailViewModel()
         {
             conferenceStore = ShinyHost.Resolve<IConferenceStore>();
+            setReminder = ShinyHost.Resolve<ISetReminder>();
         }
 
         /// <summary>
@@ -92,6 +94,21 @@ namespace ConferenceApp.Content.Sessions
             {
                 IsBusy = false;
             }
+        }
+
+        private IAsyncCommand addReminderToCalendar;
+        public IAsyncCommand AddReminderToCalendar => addReminderToCalendar ?? (addReminderToCalendar = new AsyncCommand(SetReminder));
+
+        private async Task<bool> SetReminder()
+        {
+            var appointMent = new MyAppointmentType
+            {
+                Description = Session.Description,
+                Title = Session.Title,
+                WhereWhen = Session.Room,
+                ExpireDate = Session.StartsAt.AddMinutes(-5).DateTime
+            };
+            return await setReminder.AddAppointment(appointMent);
         }
     }
 }

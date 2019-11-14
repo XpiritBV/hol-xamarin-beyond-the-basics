@@ -1,5 +1,8 @@
-﻿using ConferenceApp.Services;
+﻿using ConferenceApp.Contracts;
+using ConferenceApp.iOS.Services;
+using ConferenceApp.Services;
 using Foundation;
+using Microsoft.Extensions.DependencyInjection;
 using UIKit;
 
 namespace ConferenceApp.iOS
@@ -22,6 +25,7 @@ namespace ConferenceApp.iOS
             Shiny.iOSShinyHost.Init(new Startup(), builder =>
             {
                 //TODO: register iOS specific dependencies here
+                builder.AddTransient<ISetReminder, SetReminderImpl>();
             });
 
             global::Xamarin.Forms.Forms.Init();
