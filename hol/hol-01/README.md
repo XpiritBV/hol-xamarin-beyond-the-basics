@@ -19,7 +19,7 @@ Xamarin.Forms.Visual.Material
 
 Next, the Material renderers and themes that are implemented in this package, need to be activated. This is done by adding an initialization call in the startup routines of the iOS and Android apps.
 
-In the iOS `AppDelegate` class, find the `DidFinishLaunching` method and add the following line, just after the call to `Forms.Init()`:
+In the iOS `AppDelegate` class, find the `FinishedLaunching` method and add the following line, just after the call to `Forms.Init()`:
 
 ```csharp
 global::Xamarin.Forms.FormsMaterial.Init();
