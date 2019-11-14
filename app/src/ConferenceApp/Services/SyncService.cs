@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ConferenceApp.Contracts;
+using Xamarin.Essentials;
 
 namespace ConferenceApp.Services
 {
@@ -49,16 +50,19 @@ namespace ConferenceApp.Services
 
         public async Task<bool> SyncConferenceData(CancellationToken cancellationToken)
         {
-            Console.WriteLine("~~~SyncService: syncing conference data with server");
-
-            var sessions = await conferenceService.DownloadConferenceData(cancellationToken).ConfigureAwait(false);
-
-            if (!cancellationToken.IsCancellationRequested)
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                if (sessions.Any())
+                Console.WriteLine("~~~SyncService: syncing conference data with server");
+
+                var sessions = await conferenceService.DownloadConferenceData(cancellationToken).ConfigureAwait(false);
+
+                if (!cancellationToken.IsCancellationRequested)
                 {
-                    await conferenceStore.ReplaceData(sessions).ConfigureAwait(false);
-                    return true;
+                    if (sessions.Any())
+                    {
+                        await conferenceStore.ReplaceData(sessions).ConfigureAwait(false);
+                        return true;
+                    }
                 }
             }
 

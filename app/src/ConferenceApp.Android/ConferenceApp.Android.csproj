@@ -96,6 +96,9 @@
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>4.3.0.991211</Version>
     </PackageReference>
+    <PackageReference Include="Refit">
+      <Version>5.0.15</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
