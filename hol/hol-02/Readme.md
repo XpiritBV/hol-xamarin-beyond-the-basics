@@ -110,6 +110,13 @@ Depending how you want to access this implementation we either use the Xamarin F
 ``` C#
 [assembly: Xamarin.Forms.Dependency(typeof(SetReminderImpl))]
 ```
+
+The final step to add, is the indication that this application needs access to the calendar on the device. For thsi we use the Andoroid manfifest file and there we add the following xml snippit:
+
+``` xml
+	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
+```
+
 And this concludes our Android implementation
 
 
