@@ -4,7 +4,11 @@ In this workshop, we'll explore developing scenarios with Xamarin that are beyon
 
 ## Setup
 
-In order to get the most out of this workshop, please make sure that your developer machine is prepared. Follow the installation tutorial on the [Xamarin.com](www.xamarin.com) homepage, and make sure that you can launch a new Xamarin.Forms project from Visual Studio in either iOS or Android.
+To get the most out of this Hands-On Lab, please take your time to prepare your machine ahead of the conference. Especially the Android SDK is a large download, which is very hard to download over conference WiFi. The most comprehensive way to get ready is to complete the steps in Microsoft’s Getting Started tutorial online at:
+ 
+https://dotnet.microsoft.com/learn/xamarin/hello-world-tutorial/intro
+ 
+You can participate with either a Windows developer PC or a Mac. Do make sure that you create a blank Xamarin solution and try to run the app in an emulator or on your physical mobile device.
 
 ## HOL01 - Advanced Xamarin.Forms
 
