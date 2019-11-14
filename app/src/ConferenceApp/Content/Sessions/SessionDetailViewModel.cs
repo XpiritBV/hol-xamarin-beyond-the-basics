@@ -1,10 +1,12 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 using ConferenceApp.Contracts;
 using ConferenceApp.Contracts.Models;
 using ConferenceApp.ViewModels;
+using Microsoft.AppCenter.Analytics;
 using Shiny;
 using Xamarin.Forms;
 
@@ -43,6 +45,14 @@ namespace ConferenceApp.Content.Sessions
                 return;
 
             Session = await conferenceStore.GetSession(SessionId);
+
+            Task.Run(() =>
+            {
+                Analytics.TrackEvent("session Detail", new Dictionary<string, string> {
+                    { "Category", Session.Track },
+                    { "Title", Session.Title },
+                });
+            }).SafeFireAndForget();
         }
 
         private Session session;
