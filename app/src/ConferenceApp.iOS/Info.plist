@@ -53,5 +53,9 @@
 	</array>
 	<key>NSCalendarsUsageDescription</key>
 	<string>For adding session reminders to your calendar</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 </dict>
 </plist>

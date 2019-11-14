@@ -19,6 +19,15 @@ namespace ConferenceApp.Services
             services.AddSingleton<IConferenceApiService, ConferenceApiService>();
             services.AddSingleton<IConferenceStore, ConferenceSqliteStore>();
             services.AddSingleton<ISyncService, SyncService>();
+
+            services.RegisterJob(new Shiny.Jobs.JobInfo
+            {
+                Identifier = nameof(BackgroundSyncJob),
+                Type = typeof(BackgroundSyncJob),
+                RequiredInternetAccess = Shiny.Jobs.InternetAccess.Any,
+                BatteryNotLow = true,
+                Repeat = true
+            });
         }
     }
 }

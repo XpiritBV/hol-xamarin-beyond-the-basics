@@ -1,4 +1,5 @@
-﻿using ConferenceApp.Contracts;
+﻿using System;
+using ConferenceApp.Contracts;
 using ConferenceApp.iOS.Services;
 using ConferenceApp.Services;
 using Foundation;
@@ -35,6 +36,11 @@ namespace ConferenceApp.iOS
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            Shiny.Jobs.JobManager.OnBackgroundFetch(completionHandler);
         }
     }
 }
