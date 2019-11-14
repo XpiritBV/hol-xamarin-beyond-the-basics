@@ -309,7 +309,6 @@ Now that the basic `AppShell` is in place, we can get rid of the original `MainP
     ```
 7. Test the app, and see that it now displays the tabs in the Shell.
 
-
 Navigation is now still done using page-to-page navigation. Instead, we would like to benefit from the URI based navigation provided by the `Shell`.
 
 First, we have to define the so-called URI-routes, which should map to the pages in our application, so that `Shell` knows which pages to load.
@@ -423,6 +422,20 @@ We now have to implement the command we just bound to the `SelectionChangedComma
     >The `[QueryProperty]` attribute should map the `SpeakerId` property to the `speakerId` URI parameter.
 
 We will add deep link navigation to the app in a later exercise.
+
+### Shell Bonus Exercise
+
+`Shell` also allows us to add nested tabs. We have prepared a page in the application called `MySessionsPage`, which shows only the sessions you have favorited. We can add that as a nested tab to the `Sessions` section in the app.
+
+17. Go to the `AppShell.xaml` code, and directly below the declaration of the `SessionsPage`, add another `ShellContent` item:
+
+    ```xml
+    <ShellContent Title="My Sessions" Route="mysessions" ios:NavigationPage.IsNavigationBarTranslucent="True" ContentTemplate="{DataTemplate sessions:MySessionsPage}" />
+    ```
+
+Now if you run the app, there should be a secondary tab bar on top, which allows you to switch between "All" and "My" sessions:
+
+![shell nested tabs](screenshots/shell_nested_tabs.png)
 
 ## <a nane="4"></a> Dark Mode
 
