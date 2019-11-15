@@ -294,6 +294,30 @@ namespace MobileApp.iOS.Services
     }
 }
 ```
+One final step for the iOS project is to add a file called `GoogleService-Info.json`. You can get this file form the fire base portal. Take the following steps to get this file:
+Goto the firebase portal, found at location https://console.firebase.google.com/
+![Settings](./screenshots/firebase_home.PNG)
+
+Select your app and then goto the settings menue, found in the left top corner:
+
+![Settings](./screenshots/firebase_admin.PNG)
+
+Add a new app that is the iOS version of our app
+
+![Settings](./screenshots/firebsae_apps.PNG)
+
+Select iOS after clicking the add button:
+
+![Settings](./screenshots/firebase_selectApp.PNG)
+
+And now fill in the details for the app, that matches the settings you can find in your iOS project
+
+![Settings](./screenshots/firebase_configIos.PNG)
+
+After filling out these settings you have the option to download the json file.
+
+When you add the file to the project, set the build action to `Bundle Resource`
+## Add analytics to the forms project
 
 Now we have the implementation for both platforms, the final thing we need to do is to add the code that will log the telemetry in our Forms project.
 
