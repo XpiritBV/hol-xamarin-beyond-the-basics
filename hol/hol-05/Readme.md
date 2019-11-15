@@ -1,4 +1,4 @@
-# Excersise 05, Add analytics to your app
+# Excerise 5 - Add analytics to your app
 
 In this lab you will add Analytics support to your app using either google Firebase or Microsoft AppCenter.
 
@@ -12,7 +12,7 @@ Goals for this lab:
 ## <a name="1"></a>1. Prepare the analytics workspace
 We need to choose one of the various analytics tools that are available. In this lab you can find the solution how to work with either google firebase analytics or with Microsoft AppCenter analytics.
 
-## Create a google anaytics account
+## Create a Google Analytics account
 Before we can use firebase analytics, you need to have a google analytics account and property set up. This is done with the following steps:
 
 Goto https://analytics.google.com and log in with your google account.
@@ -29,33 +29,33 @@ NExt we need to define our property, this is information about our app. e.g. fro
 
 ![Fill in property values](./screenshots/set_property.PNG)
 
-## Prepare a google firebase anaytics workspace
-First you need to goto the google Fire base portal and register for your app the use of analytics. This is done by selecting analytics in the left pane and then select Enable Analysis. You can find a screenshot below:
+## Prepare a Google Firebase analytics workspace
+First you need to goto the Google Firebase portal and register for your app the use of analytics. This is done by selecting analytics in the left pane and then select Enable Analysis. You can find a screenshot below:
 
 ![Firebase Portal](./screenshots/enable_analytics_firebase.png)
 
 In this screen select the Enable Google Analytics button. You will now get a screen, where you link your firebase account to Google analytics. This is the analytics we created in the previous step, so now it is just a matter of linkeng the two together.
 
-Select in the dropdownbox, the analytics account you want to use, as shown below:
+Select in the dropdown, the analytics account you want to use, as shown below:
 
 ![Select google analytics account](./screenshots/select_analytics_account.png)
 
-Now the two accounts are linked and we can now start with the generation of telemerty data. For this we need to tell our app, which account we use in firebase and analytics. For this to work, we need to save a file called google-services.json and we need to add this to our android project. When you add the file to your project, ensure the Build Action for this file is `GoogleServicesJson`
+Now the two accounts are linked and we can now start with the generation of telemetry data. For this we need to tell our app, which account we use in firebase and analytics. For this to work, we need to save a file called `google-services.json` and we need to add this to our android project. When you add the file to your project, ensure the Build Action for this file is `GoogleServicesJson`
 
 ## Use analytics with Microsoft AppCenter
-If we want to use Microsoft analytics, then we need to create an Appcenter account. If you not already own an AppCenter account, you can sign up for a free account. 
+If we want to use Microsoft analytics, then we need to create an AppCenter account. If you not already own an AppCenter account, you can sign up for a free account. 
 
-In Appcenter you need to create a new app and then do this twice. One for the android and one for the iOS app. The moment you create the app, you get access to the appcenter portal and there you can select `Analytics`
+In AppCenter you need to create a new app and then do this twice. One for the android and one for the iOS app. The moment you create the app, you get access to the appcenter portal and there you can select `Analytics`
 
-The analytics will show up here in the portal, the moment we start sending data to appcenter. You can also export the data to application insights, which is part of Azure. This creates the abillity to combine telemetry from your various souces, back into one holistic view of your application, including a server side view.
+The analytics will show up here in the portal, the moment we start sending data to appcenter. You can also export the data to application insights, which is part of Azure. This creates the ability to combine telemetry from your various souces, back into one holistic view of your application, including a server side view.
 
-# TODO:Screenshots and steps settign up appcenter
+# TODO:Screenshots and steps setting up appcenter
 
 ## <a name="2"></a>2. Add the code to the app to generate analytics data for Microsoft AppCenter
 
-When we use Microsoft AppCenter, we only need to add NuGet packages to the Generic project. For this goto the NuGet PAckage manager for the project `ConferenceApp`
+When we use Microsoft AppCenter, we only need to add NuGet packages to the Generic project. For this, go to the NuGet Package manager for the project `ConferenceApp`
 
-In the Nuget package manager, select two packages. `Microsoft.Appcenter.Analytics` and `Microsoft.Appcenter.Crashes`. The moment these packages are added, we then goto the `App.cs` file and in this file we add the following lines to the method `OnStart()`
+In the Nuget package manager, select two packages: `Microsoft.Appcenter.Analytics` and `Microsoft.Appcenter.Crashes`. The moment these packages are added, we then go to the `App.cs` file and in this file we add the following lines to the method `OnStart()`
 
 ``` c#
 protected override void OnStart()
@@ -90,9 +90,10 @@ protected override void OnAppearing()
     });
   }
 ```
-  Now try to build and run the application. Do you spot the bug we now introduced?
 
-  Apparently the calls to appcenter (and this is the same for FireBase in the next paragraph) we take to much time and the GUI will not show the details page, or will show it sporadicly. How can we solve this problem?
+Now try to build and run the application. Do you spot the bug we now introduced?
+
+Apparently the calls to appcenter (and this is the same for FireBase in the next paragraph) we take too much time and the GUI will not show the details page, or will show it sporadicly. How can we solve this problem?
 
 The way we can solve this, is to push the call to Analytics to a background thread. So the modified code that does work very nicely is shown below:
 
@@ -123,7 +124,7 @@ To implement analytics using Google Firebase, we need to create a device specifi
 3. Create an implementation on iOS and decorate this with the Xamarin Forms Dependency attribute
 4. Call the Dependency service to resolve the correct platform implementation and use the interface to log analytics data
 
-LEts start with creating an abstraction for logging  analytics data. For this we add a new interface to the project `ConferenceApp.Contracts`. The itnerface definition looks as follows:
+Let's start with creating an abstraction for logging analytics data. For this we add a new interface to the project `ConferenceApp.Contracts`. The interface definition looks as follows:
 
 ``` C#
 public interface IAnalyticsService
@@ -138,9 +139,8 @@ Now in the Android project, you add the implementation behind this interface, th
 
 ![NUget Android Firebase](./Screenshots/nuget_android.png)
 
-
-NExt we create a new class `AnalyticsServiceDroid` and we place this in the Services folder in the Android project.
-In this implementation you can use the following code to implement and export the interface apropriately:
+Next, we create a new class `AnalyticsServiceDroid` and we place this in the Services folder in the Android project.
+In this implementation you can use the following code to implement and export the interface appropriately:
 
 ``` C#
 [assembly: Dependency(typeof(AnalyticsServiceDroid))]
@@ -203,9 +203,9 @@ namespace ConferenceApp.Droid.Services
 }
 ```
 
-For our iOS project we need to do somethign similar. We also need to create a platform specific implementation. First we will also add a NuGet pacakge to the iOS project called `Xamarin.FireBase.Analytics`
+For our iOS project we need to do somethign similar. We also need to create a platform specific implementation. First we will also add a NuGet package to the iOS project called `Xamarin.FireBase.Analytics`
 
-We need to initialize this library and therefore we need to add the follwoing line of code to the AppDelegate `FinishLaunching` method.
+We need to initialize this library and therefore we need to add the follwoing line of code to the AppDelegate `FinishedLaunching` method.
 
 ``` C#
 public override bool FinishedLaunching(UIApplication app, NSDictionary options)
@@ -308,9 +308,10 @@ analyticsService.LogEvent("Session_Detail", new Dictionary<string, string>
     { "Title", ((SessionDetailViewModel)BindingContext).Session.Title},
     });
 ```
+
 This now logs the session details as a custom event. 
 
-When you build and run the application, you might find a problem with the way we implemented the call to `LogEvent`. It takes to much time and this causes the shell not to function properly. We can solve this problem by pushing the work that is done in the `LogEvent` method to a background thread. If you change the code to the following, you will see the app is working properly again.
+When you build and run the application, you might find a problem with the way we implemented the call to `LogEvent`. It takes too much time and this causes the Shell not to function properly. We can solve this problem by pushing the work that is done in the `LogEvent` method to a background thread. If you change the code to the following, you will see the app is working properly again.
 
 ```C#
 TaskFactory tf = new TaskFactory();
@@ -328,13 +329,13 @@ tf.StartNew(() =>
 
 ## <a name="2"></a>4. Discover how to use the data in the various tools
 
-When you created the AppCenter implementation, you can goto either the Andoid or iOS app that you defined there and goto the analytics tab to view the data. You can see a screenshot below of the data that is shown after running the Android app.
+When you created the AppCenter implementation, you can go to either the Andoid or iOS app that you defined there and go to the analytics tab to view the data. You can see a screenshot below of the data that is shown after running the Android app.
 
 # TODO: Screenshots here!!!
 
-when you created the firebase implementation, then you can face a challenge that the event data is not shown immediately. So how can we see the event data that we send is actualy recieved?
+When you created the firebase implementation, then you could face a challenge that the event data is not shown immediately. So how can we see the event data that we send is actually received?
 
-For Android this can be done, by issueing a commandline and tell the Android Debug tools that we are running the simulation in debug mode and we want the data to be expedited in the tools. This is done by running the following command:
+For Android this can be done, by issueing a command line command and tell the Android Debug tools that we are running the simulation in debug mode and we want the data to be expedited in the tools. This is done by running the following command:
 
 `adb shell setprop debug.firebase.analytics.app com.yourcompany.conferenceapp` 
 
@@ -343,14 +344,13 @@ In this command `com.yourcompany.conferenceapp` is the name of your application 
 The same can be done in your iOS project. For this you need to specify additional startup arguments for your iOS app:
 `--argument=-FIRDebugEnabled`
 
-
 The moment you issue this command or set the startup argument, you can see the custom data flowing into Firebase. This is shown in below screenshot:
 
 ![Firebase events](./screenshots/firebase_debugview.png)
 
 The standard dashboard will always show data, the above commands are only required for custom properties.
 
-Below you can see a screenshot of the FireBase dashboard for analytics
+Below you can see a screenshot of the Firebase dashboard for analytics
 
 ![Firebase Dashboard](./screenshots/firebase_dashboard.png)
 

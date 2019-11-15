@@ -41,7 +41,7 @@ Visual="Material"
 
 This instruction lets Xamarin.Forms know that it has to apply the Material style to the controls on the page. If you do this during a debug session, you should see the application change in real time. The change is most dramatic on iOS:
 
-![applying Visual in iOS](screenshots/applying_visual_in_ios.gif)
+![applying Visual in iOS](screenshots/ios_material_visual.gif)
 
 The following pages should all be changed to create a consistent look & feel:
 

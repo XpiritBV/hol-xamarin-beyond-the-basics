@@ -1,4 +1,4 @@
-# Exercise 3 - Resilient Connected Apps
+# Exercise 6 - Tap Into Native Experiences
 
 In this module, we will spice up the app a little bit with deeper OS integrations like AppLinks, haptic feedback and a widget.
 

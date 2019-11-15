@@ -4,38 +4,44 @@ In this workshop, we'll explore developing scenarios with Xamarin that are beyon
 
 ## Setup
 
-To get the most out of this Hands-On Lab, please take your time to prepare your machine ahead of the conference. Especially the Android SDK is a large download, which is very hard to download over conference WiFi. The most comprehensive way to get ready is to complete the steps in Microsoft’s Getting Started tutorial online at:
+To get the most out of this Hands-On Lab, please take your time to prepare your machine ahead of the conference. Especially the Android SDK is a large download, which is very hard to download over conference WiFi. The most comprehensive way to get ready is to complete the steps in Microsoft’s Instaling Xamarin tutorial online at:
  
-https://dotnet.microsoft.com/learn/xamarin/hello-world-tutorial/intro
+https://docs.microsoft.com/en-us/xamarin/get-started/installation/index
  
 You can participate with either a Windows developer PC or a Mac. Do make sure that you create a blank Xamarin solution and try to run the app in an emulator or on your physical mobile device.
 
-## HOL01 - Advanced Xamarin.Forms
+## Exercise 1 - Advanced Xamarin.Forms
 
 This module introduces new features introduced in Xamarin.Forms: `Visual`, `CollectionView` and `Shell`. Additionally, we will add an automatic Dark Mode to an existing Forms Application.
 
-[Get started with HOL01](./hol/hol01/README.md)
+[Get started with Exercise 1](./hol/hol01/README.md)
 
-## HOL02 - Integrating with OS Services
+## Exercise 2 - Integrating with OS Services
 
-// Marcel
+In this hands-on lab we will add calendar integration to our app. this way an attendee can add a session they like to their agenda.
 
-## HOL03 - Resilient Connected Apps
+[Get started with Exercise 2](./hol/hol02/Readme.md)
+
+## Exercise 3 - Resilient Connected Apps
 
 In this module, we will add some mechisms to the app so that it is more resilient in dealing with flaky network connections.
 
-[Get started with HOL03](./hol/hol03/README.md)
+[Get started with Exercise 3](./hol/hol03/README.md)
 
-## HOL04 - Notifications
+## Exercise 4 - Notifications
 
-// Marcel
+In this lab you will add local notifications to your app using the `Shiny.Location` NuGet package.
 
-## HOL05 - Analytics
+[Get started with Exercise 4](./hol/hol04/Readme.md)
 
-// Marcel
+## Exercise 5 - Analytics
 
-## HOL06 - Tapping into Native Experiences
+In this lab you will add Analytics support to your app using either google Firebase or Microsoft AppCenter.
+
+[Get started with Exercise 4](./hol/hol05/Readme.md)
+
+## Exercise 6 - Tapping into Native Experiences
 
 In this module, we will spice up the app a little bit with deeper OS integrations like AppLinks, haptic feedback and a widget.
 
-[Get started with HOL06](./hol/hol06/README.md)
+[Get started with Exercise 6](./hol/hol06/README.md)

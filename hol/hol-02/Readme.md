@@ -1,6 +1,6 @@
-# Add Calendar integration to your app
+# Exercise 2 - Add Calendar integration to your app
 
-In this hands-on lab we will add calendar intergation to our app. this way an attendee can add a session he likes to his agenda
+In this hands-on lab we will add calendar integration to our app. this way an attendee can add a session they like to their agenda.
 
 Goals for this lab: 
 - [Create an abstraction for setting reminders](#1)
@@ -77,19 +77,20 @@ intent.PutExtra(CalendarContract.Events.InterfaceConsts.EventEndTimezone, "UTC")
 
 Now we have all the data prepared, but now we need to tell the operating system, what do we expect it to choose. For this we use the `SetData()` method. We define we expect it to open an application that conforms to the `CalendarContract.Events` and that we specify where to find this contract at a given fixed Uri
 
-This is done with the following c# ststement:
+This is done with the following c# statement:
 ``` c#
 intent.SetData(CalendarContract.Events.ContentUri);
 ```
-And finaly we start the intent and return a TAsk with the boolean result success:
+And finally we start the intent and return a TAsk with the boolean result success:
 
 ``` c#
  MainActivity.CurrentActivity.StartActivity(intent);
  return Task.FromResult(true);
  ```
-You might have seen we use an utillity function to create the correct datastructures to pass allong to the operating system This is the method `GetDateTimeMS`
+You might have seen that we use an utillity function to create the correct datastructures to pass allong to the operating system This is the method `GetDateTimeMS`
 
 Here is how that function works:
+
 ``` c#
 long GetDateTimeMS(DateTime time)
 {
@@ -105,28 +106,41 @@ long GetDateTimeMS(DateTime time)
 }
 ```
 
-Depending how you want to access this implementation we either use the Xamarin Forms Dependency Service or we use our own dependency injection framwork of choice. WHen we use the standard Xamarin Forms Dependency service, we need to add the following attribute to our class definition:
+Depending how you want to access this implementation we either use the Xamarin Forms Dependency Service or we use our own dependency injection framework of choice. In our case, we are using the `Shiny` container, so you can register the component in the `MainApplication` class. 
+
+When you use the standard Xamarin Forms Dependency Service, you need to add the following attribute to our class definition:
 
 ``` C#
 [assembly: Xamarin.Forms.Dependency(typeof(SetReminderImpl))]
 ```
 
-The final step to add, is the indication that this application needs access to the calendar on the device. For thsi we use the Andoroid manfifest file and there we add the following xml snippit:
+The final step to add, is the indication that this application needs access to the calendar on the device. For this we use the Andoroid manfifest file and there we add the following xml snippet:
 
 ``` xml
 	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
 ```
 
-And this concludes our Android implementation
-
+And this concludes our Android implementation.
 
 ## <a name="3"></a>3. Create an iOS specific implementation
 For iOS we also need to create a platform specific implementation. To follow good practice we also create a folder in our iOS project called Services.
 In this folder we create a new class called `SetReminderImpl`
 
-The iOS implementation interacts with the operating system build in EVentKit API's. We need to ask access to the calendar of the user and after access is granted we can create a new event and then save this event in the calendar event store that is available.
+The iOS implementation interacts with the operating system build in `EventKit` API's. We need to ask access to the calendar of the user and after access is granted we can create a new event and then save this event in the calendar event store that is available.
 
-This is implemented in the following way in iOS
+First, we need to set a description for the usage of the calendar in the `info.plist` of the app. Add the following key:
+
+![calendar usage in iOS](ios_calendar_permission.png)
+
+Or in XML form:
+
+```xml
+<key>NSCalendarsUsageDescription</key>
+<string>For adding session reminders to your calendar</string>
+```
+
+The component is implemented in the following way in iOS:
+
 ```c#
 public async Task<bool> AddAppointment(MyAppointmentType appointment)
 {
@@ -148,9 +162,10 @@ public async Task<bool> AddAppointment(MyAppointmentType appointment)
 }
 ```
 
-Also in this cas we neeed to have a way to setup the correct data structures for date and time. This is done with a helper function called `DateTimeToNSDate`
+Also in this cas we need to have a way to setup the correct data structures for date and time. This is done with a helper function called `DateTimeToNSDate`
 
 The implementation for this function is as follows:
+
 ``` c#
 public NSDate DateTimeToNSDate(DateTime date)
 {
@@ -159,13 +174,14 @@ public NSDate DateTimeToNSDate(DateTime date)
     return (NSDate)date;
 }
 ```
-And also here, if we are using the standard xamarin Forms dependency service we need to add the following attribute to our class:
+
+And also here, if we are using the standard Xamarin Forms Dependency Service we need to add the following attribute to our class, or register it in the `Shiny` container in the `AppDelegate`'s `FinishedLaunching` method.
 
 ``` c#
 [assembly: Xamarin.Forms.Dependency(typeof(SetReminderImpl))]
 ```
 
-And that is is, we now have an android and iOS implementation to add a reminder to the agenda of the phone user. Now lets use this from our app.
+And that is it, we now have an android and iOS implementation to add a reminder to the agenda of the phone user. Now lets use this from our app.
 
 ## <a name="4"></a>4. Call the platform independend code to add reminders to your agenda
 
@@ -177,9 +193,9 @@ In the SessionDetailPage class you can see we initialize the page, by setting th
 
 We want to add a button to the User Interface and we want to handle the button using a command that is implemented in the ViewModel. For this to work we need to implement the handler for the button click as a ICommandHandler implementation.
 
-Let us first add the required Xaml to the page, so we get a button added to the page that we can click to add this to our agenda. This is done by adding a button definition to the Xaml definition of the page:
+Let us first add the required XAML to the page, so we get a button added to the page that we can click to add this to our agenda. This is done by adding a button definition to the Xaml definition of the page:
 
-``` xaml
+``` xml
         ... other xaml directives above
    </StackLayout>
 </Frame>
@@ -204,14 +220,15 @@ Now the final part is that we need to call our implementation that is device spe
 
 ``` c#
 ISetReminder reminder = DependencyService.Get<ISetReminder>();
-MyAppointmentType appointMent = new MyAppointmentType();
-appointMent.Description = Session.Description;
-appointMent.Title = Session.Title;
-appointMent.WhereWhen = Session.Room;
-appointMent.ExpireDate = Session.StartsAt.AddMinutes(-5).DateTime;
-return await reminder.AddAppointment(appointMent);
+MyAppointmentType appointment = new MyAppointmentType();
+appointment.Description = Session.Description;
+appointment.Title = Session.Title;
+appointment.WhereWhen = Session.Room;
+appointment.ExpireDate = Session.StartsAt.AddMinutes(-5).DateTime;
+return await reminder.AddAppointment(appointment);
 ```
-As you can see we set the reminder 5 minutes fbefore the start of the session.
+
+As you can see we set the reminder 5 minutes before the start of the session.
 
 Now build and run the application to see if you can add a session to the agenda available on your device.
 
