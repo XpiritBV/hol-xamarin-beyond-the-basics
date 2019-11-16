@@ -123,6 +123,7 @@
     <Compile Include="Services\SetReminderImpl.cs" />
     <Compile Include="Services\AnalyticsServiceAndroid.cs" />
     <Compile Include="Services\HapticFeedbackService.cs" />
+    <Compile Include="MySessionsWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -150,6 +151,14 @@
     <AndroidResource Include="Resources\drawable\tab_about.png" />
     <AndroidResource Include="Resources\drawable\tab_feed.png" />
     <AndroidResource Include="Resources\drawable\previewImage.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\xml\appwidgetprovider.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Widget.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
