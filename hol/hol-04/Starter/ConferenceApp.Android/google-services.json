@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "693609567230",
+    "firebase_url": "https://vslive-hol-demo-app.firebaseio.com",
+    "project_id": "vslive-hol-demo-app",
+    "storage_bucket": "vslive-hol-demo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693609567230:android:e37bb31793bafa267626af",
+        "android_client_info": {
+          "package_name": "com.yourcompany.conferenceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693609567230-5pqpgb39hk0ijgu27k03galnq9red2nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfHIDVuBde2Qf8t4LPqYNKcbyOhPk_z9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693609567230-5pqpgb39hk0ijgu27k03galnq9red2nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

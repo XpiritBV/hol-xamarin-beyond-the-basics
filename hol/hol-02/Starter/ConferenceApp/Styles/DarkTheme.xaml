@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConferenceApp.Styles.DarkTheme"
+             Source="DefaultTheme.xaml">
+    <!-- this theme is based on the DefaultTheme resource dictionary -->
+
+    <!-- Define the theme specific colors -->
+    <Color x:Key="BackgroundColor">#000000</Color>
+    <Color x:Key="NavigationBackground">#80000000</Color>
+    <Color x:Key="ElementSelectedColor">#0A84FF</Color>
+    <Color x:Key="ElementUnSelectedColor">#8E8E93</Color>
+    
+    <Color x:Key="TextNavigationColor">#FFFFFFFF</Color>
+    <Color x:Key="TextPrimaryColor">#B0FFFFFF</Color>
+    <Color x:Key="TextSecondaryColor">#B0FFFFFF</Color>
+    <Color x:Key="TextTernaryColor">#C8C8C8</Color>
+
+    <Color x:Key="CardBackgroundColor">#FF333333</Color>
+
+    <Color x:Key="SignalColor">#f63c52</Color>
+</ResourceDictionary>

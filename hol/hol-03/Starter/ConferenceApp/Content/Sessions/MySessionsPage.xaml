@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             x:Class="ConferenceApp.Content.Sessions.MySessionsPage"
+             xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Sessions"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:styles="clr-namespace:ConferenceApp.Styles"
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             Visual="Material">
+
+    <d:ContentPage.BindingContext>
+        <local:MySessionsViewModel/>
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <RefreshView
+            IsRefreshing="{Binding IsBusy}"
+            Command="{Binding ReloadSessionsCommand}">
+            <CollectionView
+                ItemsSource="{Binding SessionsGrouped}"
+                ItemSizingStrategy="MeasureAllItems"
+                IsGrouped="True"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectSessionCommand}">
+
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalTextAlignment="Center"
+                               VerticalOptions="End"
+                               Text="You have not favorited any sessions" />
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="{StaticResource FontAwesome}"
+                               Text="{x:Static styles:IconFont.HeartBroken}" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <Label Text="{x:Static styles:IconFont.Circle}" VerticalOptions="Center" FontFamily="{StaticResource FontAwesome}" FontSize="6" Style="{DynamicResource TextSubheadSecondary}"/>
+                            <Label Text="{Binding GroupName}" Style="{DynamicResource TextSubheadSecondary}" VerticalOptions="Center" />
+                            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" Color="{DynamicResource TextSecondaryColor}" HeightRequest="2" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate>
+                        <!-- workaround for iOS bug where it shows a default view if there is no footer template -->
+                        <ContentView />
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>                        
+                        <Grid Padding="10">
+                            <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
+                                   CornerRadius="10"
+                                   InputTransparent="True">
+                                <StackLayout Spacing="10">
+                                    <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}" />
+                                    <Label Text="{Binding Room}" Style="{DynamicResource TextBody}" />
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Orientation="Horizontal" Margin="15,0,0,0">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Speaker">
+                                                <circle:CircleImage HeightRequest="35" Margin="-15,0,0,0" Source="{Binding ProfilePictureSmall}" BorderColor="{DynamicResource TextPrimaryColor}" BorderThickness="2"></circle:CircleImage>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Spacing="5" Orientation="Horizontal">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="models:Speaker">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding FirstName}" />
+                                                                <Span Text=" " />
+                                                                <Span Text="{Binding LastName}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

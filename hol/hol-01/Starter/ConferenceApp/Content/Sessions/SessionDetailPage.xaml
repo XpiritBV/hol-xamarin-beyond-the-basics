@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:styles="clr-namespace:ConferenceApp.Styles"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Sessions"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="ConferenceApp.Content.Sessions.SessionDetailPage"
+             Title="Session"
+             BackgroundColor="{DynamicResource BackgroundColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+            <local:FavoriteColorConverter x:Key="FavoriteColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="20">
+                <Frame BackgroundColor="{DynamicResource CardBackgroundColor}"
+                       Padding="30">
+                    <Label Text="{Binding Session.Title}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Style="{DynamicResource TextHeadLine}" />
+                </Frame>
+
+                <Label Style="{DynamicResource TextCaptionSecondary}"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding FormattedSessionTime}" />
+                            <Span Text=" in " />
+                            <Span Text="{Binding Session.Room}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Button Command="{Binding ToggleFavoriteCommand}"
+                        Text="{x:Static styles:IconFont.Heart}"
+                        FontFamily="{StaticResource FontAwesome}"
+                        FontSize="Large"
+                        TextColor="{Binding IsFavorite, Converter={x:StaticResource FavoriteColorConverter}}">
+                </Button>
+
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}">
+                    <Label Text="{Binding Session.Description}"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Start"
+                            Style="{DynamicResource TextBody}" />
+                </Frame>
+
+                <Frame BackgroundColor="{DynamicResource BackgroundColor}" IsVisible="{Binding Session.IsServiceSession, Converter={x:StaticResource InvertedBooleanConverter}}">
+                    <StackLayout>
+                        <Label Text="speakers" HorizontalTextAlignment="Center" Style="{DynamicResource TextCaptionSecondary}"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Session.Speakers}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnSpacing="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <circle:CircleImage Aspect="AspectFill" Grid.Column="0" Source="{Binding ProfilePictureSmall}" />
+                                        <StackLayout Orientation="Horizontal" Grid.Column="1">
+                                            <Label Style="{DynamicResource TextCaptionSecondary}" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FirstName}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding LastName}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

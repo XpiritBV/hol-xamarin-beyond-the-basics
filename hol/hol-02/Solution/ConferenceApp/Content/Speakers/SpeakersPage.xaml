@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:ConferenceApp.Content.Speakers"
+             xmlns:models="clr-namespace:ConferenceApp.Contracts.Models;assembly=ConferenceApp.Contracts"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             x:Class="ConferenceApp.Content.Speakers.SpeakersPage"
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             Title="{Binding Title}"
+             Visual="Material">
+
+    <ContentPage.BindingContext>
+        <local:SpeakersViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding ReloadSpeakersCommand}">
+            <CollectionView
+                    ItemsSource="{Binding Speakers}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedSpeaker, Mode=TwoWay}"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    SelectionChangedCommand="{Binding SelectSpeakerCommand}"
+                    Margin="10">
+
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="Loading speakers..."
+                               IsVisible="{Binding IsBusy}"/>
+
+                        <Label Style="{DynamicResource TextHeadLine}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Text="There are no speakers here :("
+                               IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     HorizontalItemSpacing="10"
+                                     VerticalItemSpacing="10"
+                                     SnapPointsType="Mandatory"
+                                     SnapPointsAlignment="Start"
+                                     />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Speaker">
+                        <Frame InputTransparent="True"
+                                BackgroundColor="{DynamicResource CardBackgroundColor}"
+                                IsClippedToBounds="True" Padding="10">
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100" />
+                                    <RowDefinition Height="100" />
+                                </Grid.RowDefinitions>
+                                <circle:CircleImage HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0" Source="{Binding ProfilePictureSmall}" />
+                                <StackLayout Grid.Row="1">
+                                    <StackLayout>
+                                        <Label Style="{DynamicResource TextTitle}"
+                                                HorizontalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding FirstName}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding LastName}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding TagLine}"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{DynamicResource TextCaptionSecondary}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
