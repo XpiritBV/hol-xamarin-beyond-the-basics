@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>../../../tools/conferenceapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>../../../../tools/conferenceapp.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>xamarin-hol</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>signingkey</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>xamarin-hol</AndroidSigningKeyPass>
@@ -51,7 +51,7 @@
     <AotAssemblies>true</AotAssemblies>
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>../../../tools/conferenceapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>../../../../tools/conferenceapp.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>xamarin-hol</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>signingkey</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>xamarin-hol</AndroidSigningKeyPass>

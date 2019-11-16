@@ -8,7 +8,7 @@ using AsyncAwaitBestPractices.MVVM;
 using ConferenceApp.Contracts;
 using ConferenceApp.Contracts.Models;
 using ConferenceApp.Services;
-using MvvmHelpers;
+using ConferenceApp.ViewModels;
 using Shiny;
 
 namespace ConferenceApp.Content.Sessions
