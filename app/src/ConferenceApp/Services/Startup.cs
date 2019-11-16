@@ -4,6 +4,7 @@ using Infrastructure.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using Shiny;
+using Shiny.Locations;
 
 namespace ConferenceApp.Services
 {
@@ -15,6 +16,9 @@ namespace ConferenceApp.Services
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.UseGeofencing<LocationDelegate>();
+            services.UseNotifications();
+
             services.AddSingleton(p => RestService.For<IConferenceApi>(httpClient));
             services.AddSingleton<IConferenceApiService, ConferenceApiService>();
             services.AddSingleton<IConferenceStore, ConferenceSqliteStore>();
@@ -29,5 +33,7 @@ namespace ConferenceApp.Services
                 Repeat = true
             });
         }
+
+
     }
 }

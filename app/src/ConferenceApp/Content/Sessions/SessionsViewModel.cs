@@ -10,6 +10,8 @@ using ConferenceApp.Contracts.Models;
 using ConferenceApp.Services;
 using MvvmHelpers;
 using Shiny;
+using Shiny.Locations;
+using Shiny.Notifications;
 using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions
@@ -117,6 +119,45 @@ namespace ConferenceApp.Content.Sessions
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+
+        private IAsyncCommand geofenceCommand;
+        public IAsyncCommand GeofenceCommand => geofenceCommand ?? (geofenceCommand = new AsyncCommand(RegisterGeofence));
+
+        private async Task RegisterGeofence()
+        {
+            var geofences = ShinyHost.Resolve<IGeofenceManager>();
+            var notifications = ShinyHost.Resolve<INotificationManager>();
+
+            var registeredRegions = await geofences.GetMonitorRegions();
+
+            if (registeredRegions.Count() > 0)
+            {
+                foreach (var region in registeredRegions)
+                {
+                    await geofences.StopMonitoring(region.Identifier);
+                }
+            }
+            else
+            {// this is really only required on iOS, but do it to be safe
+                var access = await notifications.RequestAccess();
+
+                // now register the location and a perimeter of 200 meters
+                if (access == AccessState.Available)
+                {
+                    await geofences.StartMonitoring(new GeofenceRegion(
+                        "Loews Royal Pacific Resort",
+                        new Position(28.4687952, -81.4692212),
+                        Distance.FromMeters(200)
+                    )
+                    {
+                        NotifyOnEntry = true,
+                        NotifyOnExit = true,
+                        SingleUse = false
+                    });
+                }
             }
         }
     }

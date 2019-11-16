@@ -56,6 +56,13 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
+    <string>location</string>
 	</array>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Location is used to demo your application</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Location is used to demo your application</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Location is used to demo your application</string>
 </dict>
 </plist>
