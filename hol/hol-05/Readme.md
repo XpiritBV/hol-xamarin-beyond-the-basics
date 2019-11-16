@@ -8,7 +8,6 @@ Goals for this lab:
 - [Add the code to the app to generate analytics data for Google Firebase](#3)
 - [Discover how to use the data in the various tools](#4)
 
-
 ## <a name="1"></a>1. Prepare the analytics workspace
 We need to choose one of the various analytics tools that are available. In this lab you can find the solution how to work with either google firebase analytics or with Microsoft AppCenter analytics.
 
@@ -203,7 +202,12 @@ namespace ConferenceApp.Droid.Services
 }
 ```
 
-For our iOS project we need to do somethign similar. We also need to create a platform specific implementation. First we will also add a NuGet package to the iOS project called `Xamarin.FireBase.Analytics`
+For our iOS project we need to do something similar. We also need to create a platform specific implementation. First we will also add a few NuGet packages to the iOS project:
+
+- `Xamarin.FireBase.iOS.Analytics`
+- `Xamarin.FireBase.iOS.Core`
+- `Xamarin.FireBase.iOS.InstanceID`
+- `Xamarin.Build.Download`
 
 We need to initialize this library and therefore we need to add the follwoing line of code to the AppDelegate `FinishedLaunching` method.
 
