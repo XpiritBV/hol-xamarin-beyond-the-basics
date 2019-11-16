@@ -4,6 +4,7 @@ using ConferenceApp.iOS.Services;
 using ConferenceApp.Services;
 using Foundation;
 using Microsoft.Extensions.DependencyInjection;
+using MobileApp.iOS.Services;
 using UIKit;
 
 namespace ConferenceApp.iOS
@@ -27,11 +28,14 @@ namespace ConferenceApp.iOS
             {
                 //TODO: register iOS specific dependencies here
                 builder.AddTransient<ISetReminder, SetReminderImpl>();
+                builder.AddTransient<IAnalyticsService, AnalyticsServiceIOS>();
             });
 
             global::Xamarin.Forms.Forms.Init();
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
+            Firebase.Core.App.Configure();
+            var foo = Firebase.Core.Configuration.SharedInstance;
 
             LoadApplication(new App());
 

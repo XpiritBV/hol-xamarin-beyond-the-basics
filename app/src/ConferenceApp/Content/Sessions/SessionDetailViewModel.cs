@@ -17,11 +17,13 @@ namespace ConferenceApp.Content.Sessions
     {
         private readonly IConferenceStore conferenceStore;
         private readonly ISetReminder setReminder;
+        private readonly IAnalyticsService analyticsService;
 
         public SessionDetailViewModel()
         {
             conferenceStore = ShinyHost.Resolve<IConferenceStore>();
             setReminder = ShinyHost.Resolve<ISetReminder>();
+            analyticsService = ShinyHost.Resolve<IAnalyticsService>();
         }
 
         /// <summary>
@@ -52,6 +54,13 @@ namespace ConferenceApp.Content.Sessions
                     { "Category", Session.Track },
                     { "Title", Session.Title },
                 });
+
+                //You can use any of the LogEvent Overloads, for example:
+                analyticsService.LogEvent("Session_Detail", new Dictionary<string, string>
+                    {
+                    { "Category", Session.Track},
+                    { "Title", Session.Title},
+                    });
             }).SafeFireAndForget();
         }
 
