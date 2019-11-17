@@ -27,6 +27,7 @@ namespace ConferenceApp.Droid
                 //TODO: register Android specific dependencies here
                 builder.AddTransient<ISetReminder, SetReminderImpl>();
                 builder.AddTransient<IAnalyticsService, AnalyticsServiceDroid>();
+                builder.AddTransient<IHapticFeedback, HapticFeedbackService>();
             });
         }
     }

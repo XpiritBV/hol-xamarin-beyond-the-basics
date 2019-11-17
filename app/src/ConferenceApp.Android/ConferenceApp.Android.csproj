@@ -119,6 +119,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Services\SetReminderImpl.cs" />
     <Compile Include="Services\AnalyticsServiceAndroid.cs" />
+    <Compile Include="Services\HapticFeedbackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

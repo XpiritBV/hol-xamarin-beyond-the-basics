@@ -68,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\PageRenderer.cs" />
     <Compile Include="Services\SetReminderImpl.cs" />
+    <Compile Include="Services\HapticFeedback.cs" />
     <Compile Include="Services\AnalyticsServiceIOS.cs" />
   </ItemGroup>
   <ItemGroup>

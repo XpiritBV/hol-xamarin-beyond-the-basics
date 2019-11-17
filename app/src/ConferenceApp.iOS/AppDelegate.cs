@@ -29,13 +29,12 @@ namespace ConferenceApp.iOS
                 //TODO: register iOS specific dependencies here
                 builder.AddTransient<ISetReminder, SetReminderImpl>();
                 builder.AddTransient<IAnalyticsService, AnalyticsServiceIOS>();
+                builder.AddTransient<IHapticFeedback, HapticFeedback>();
             });
 
             global::Xamarin.Forms.Forms.Init();
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
-            Firebase.Core.App.Configure();
-            var foo = Firebase.Core.Configuration.SharedInstance;
 
             LoadApplication(new App());
 
