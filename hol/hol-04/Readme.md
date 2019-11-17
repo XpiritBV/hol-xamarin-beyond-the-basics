@@ -161,5 +161,21 @@ private async Task RegisterGeofence()
     }
 }
 ```
+## Testing this on the Android Emulator
+If you use the Android emulator, make sure you can use geofencing. For your call to `StartMonitoring` to succeed, you need to first make a change in your emulator configuration.
+Goto the settings of the android OS and type in `Location` next select `Location & Security`
+
+you can on this page select  `location services` and there you see a set of providers like in the screenshot below:
+
+![providers](./screenshots/select_location_acuracy.png)
+
+Now select `Google Location Accuracy`
+
+You will now see the following screen, where you can turn on `Improve location Accuracy` and turn this on as shown in the following screnshot:
+
+![improve accuracy](./screenshots/location_acuracy.png)
+
+
+After making this change, your call to `StartMonitoring` will succceed and you are now able to send changes to the gps location and watch the notifications appear.
 
 
