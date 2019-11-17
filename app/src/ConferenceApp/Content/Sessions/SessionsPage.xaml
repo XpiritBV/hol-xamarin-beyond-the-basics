@@ -22,6 +22,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding SyncCommand}" Text="SYNC" />
+        <ToolbarItem Command="{Binding GeofenceCommand}" Text="Geo" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

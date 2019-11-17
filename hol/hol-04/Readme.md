@@ -15,8 +15,9 @@ First start by adding the NuGet package `Shiny.Location` and `Shiny.Notification
 ![include prerelease](./screenshots/add_Schiny.locations.PNG)
 
 After adding the first package `Shiny.Notifications` it will open a readme file that contains some things you need to add to the Android and iOS project.
+Ensure you install the pakages in all the project, so also in the Android and iOS projects.
 
-First we add the following code to the `startup.cs` class:
+First we add the following code to the `startup.cs` class found in the ConferenceApp project:
 
 ``` c#
 public override void ConfigureServices(IServiceCollection services)
