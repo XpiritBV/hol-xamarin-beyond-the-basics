@@ -15,6 +15,8 @@ namespace ConferenceApp.Services
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.UseNotifications();
+
             services.AddSingleton(p => RestService.For<IConferenceApi>(httpClient));
             services.AddSingleton<IConferenceApiService, ConferenceApiService>();
             services.AddSingleton<IConferenceStore, ConferenceSqliteStore>();
@@ -29,5 +31,7 @@ namespace ConferenceApp.Services
                 Repeat = true
             });
         }
+
+
     }
 }

@@ -10,6 +10,7 @@ using ConferenceApp.Contracts.Models;
 using ConferenceApp.Services;
 using MvvmHelpers;
 using Shiny;
+using Shiny.Notifications;
 using Xamarin.Forms;
 
 namespace ConferenceApp.Content.Sessions
