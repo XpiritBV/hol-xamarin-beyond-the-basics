@@ -56,6 +56,32 @@ namespace ConferenceApp.Content.Sessions
                     { "Title", Session.Title },
                 });
             }).SafeFireAndForget();
+
+            RegisterAppLink(active: true);
+        }
+
+        public override void Deactivate()
+        {
+            RegisterAppLink(active: false);
+        }
+
+        private void RegisterAppLink(bool active)
+        {
+            var entry = new AppLinkEntry
+            {
+                Title = Session.Title,
+                StyleId = Session.Id,
+                AppLinkUri = new Uri($"{App.AppLinkBaseUri}/sessions/sessiondetail?sessionId={Uri.EscapeDataString(Session.Id)}", UriKind.RelativeOrAbsolute),
+                Description = Session.IsServiceSession ? "Service session" : Session.Description,
+                IsLinkActive = active
+            };
+
+            // These are parameters that are shown in the search (especially the AppName)
+            entry.KeyValues.Add("contentType", "Session");
+            entry.KeyValues.Add("companyName", "VSLive");
+            entry.KeyValues.Add("appName", "ConferenceApp");
+
+            Application.Current.AppLinks.RegisterLink(entry);
         }
 
         private Session session;

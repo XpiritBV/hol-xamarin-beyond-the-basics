@@ -5,13 +5,45 @@ using Android.OS;
 using Android.Runtime;
 using ConferenceApp.Services;
 using ConferenceApp.Styles;
+using Firebase;
 using Shiny;
+using Xamarin.Forms.Platform.Android.AppLinks;
 
 namespace ConferenceApp.Droid
 {
+    [IntentFilter(new[] { Android.Content.Intent.ActionView },
+                   Categories = new[]
+                   {
+                            Android.Content.Intent.CategoryDefault,
+                            Android.Content.Intent.CategoryBrowsable
+                   },
+                   DataScheme = "http", DataHost = APPLINK_DATAHOST, DataPathPrefix = "/sessions/", AutoVerify = true)]
+    [IntentFilter(new[] { Android.Content.Intent.ActionView },
+                   Categories = new[]
+                   {
+                            Android.Content.Intent.CategoryDefault,
+                            Android.Content.Intent.CategoryBrowsable
+                   },
+                   DataScheme = "https", DataHost = APPLINK_DATAHOST, DataPathPrefix = "/sessions/", AutoVerify = true)]
+    [IntentFilter(new[] { Android.Content.Intent.ActionView },
+                   Categories = new[]
+                   {
+                            Android.Content.Intent.CategoryDefault,
+                            Android.Content.Intent.CategoryBrowsable
+                   },
+                   DataScheme = "http", DataHost = APPLINK_DATAHOST, DataPathPrefix = "/speakers/", AutoVerify = true)]
+    [IntentFilter(new[] { Android.Content.Intent.ActionView },
+                   Categories = new[]
+                   {
+                            Android.Content.Intent.CategoryDefault,
+                            Android.Content.Intent.CategoryBrowsable
+                   },
+                   DataScheme = "https", DataHost = APPLINK_DATAHOST, DataPathPrefix = "/speakers/", AutoVerify = true)]
     [Activity(Label = "ConferenceApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        const string APPLINK_DATAHOST = "conferenceapp-demo.azurewebsites.net";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -25,6 +57,9 @@ namespace ConferenceApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
+
+            FirebaseApp.InitializeApp(this);
+            AndroidAppLinks.Init(this);
 
             LoadApplication(new App());
 
