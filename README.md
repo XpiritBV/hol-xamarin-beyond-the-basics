@@ -14,34 +14,34 @@ You can participate with either a Windows developer PC or a Mac. Do make sure th
 
 This module introduces new features introduced in Xamarin.Forms: `Visual`, `CollectionView` and `Shell`. Additionally, we will add an automatic Dark Mode to an existing Forms Application.
 
-[Get started with Exercise 1](./hol/hol01/README.md)
+[Get started with Exercise 1](./hol/hol-01/README.md)
 
 ## Exercise 2 - Integrating with OS Services
 
 In this hands-on lab we will add calendar integration to our app. this way an attendee can add a session they like to their agenda.
 
-[Get started with Exercise 2](./hol/hol02/Readme.md)
+[Get started with Exercise 2](./hol/hol-02/Readme.md)
 
 ## Exercise 3 - Resilient Connected Apps
 
 In this module, we will add some mechisms to the app so that it is more resilient in dealing with flaky network connections.
 
-[Get started with Exercise 3](./hol/hol03/README.md)
+[Get started with Exercise 3](./hol/hol-03/README.md)
 
 ## Exercise 4 - Notifications
 
 In this lab you will add local notifications to your app using the `Shiny.Location` NuGet package.
 
-[Get started with Exercise 4](./hol/hol04/Readme.md)
+[Get started with Exercise 4](./hol/hol-04/Readme.md)
 
 ## Exercise 5 - Analytics
 
 In this lab you will add Analytics support to your app using either google Firebase or Microsoft AppCenter.
 
-[Get started with Exercise 4](./hol/hol05/Readme.md)
+[Get started with Exercise 4](./hol/hol-05/Readme.md)
 
 ## Exercise 6 - Tapping into Native Experiences
 
 In this module, we will spice up the app a little bit with deeper OS integrations like AppLinks, haptic feedback and a widget.
 
-[Get started with Exercise 6](./hol/hol06/README.md)
+[Get started with Exercise 6](./hol/hol-06/README.md)
