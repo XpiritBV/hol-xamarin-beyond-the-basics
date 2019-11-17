@@ -81,12 +81,21 @@ This is done with the following c# statement:
 ``` c#
 intent.SetData(CalendarContract.Events.ContentUri);
 ```
-And finally we start the intent and return a TAsk with the boolean result success:
+And finally we start the intent and return a Task with the boolean result success. In order to be able to send the intent to the operating system to be handled we need to know what the current running activity is. In the past we could do this with a call to `Forms.Activity.Current` but this is now depricated. In stead we need to use a plugin called CrosssCurrentActivity which can be found on NuGet. After installing the NuGet package in the Android project we now need to initialize the plugin. 
+
+This is done in the `MainActivity.cs`. Add the following line to the initialization code there:
+``` c#
+CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+```
+Now that this is done, we can use the `CrossCurrentActivity.Curent.Activity` property to get access to the current executing activity.
+So the final code we need to add to the `AddAppointment` implementation is the following:
 
 ``` c#
- MainActivity.CurrentActivity.StartActivity(intent);
+ CrossCurrentActivity.Curent.Activity.StartActivity(intent);
  return Task.FromResult(true);
  ```
+
 You might have seen that we use an utillity function to create the correct datastructures to pass allong to the operating system This is the method `GetDateTimeMS`
 
 Here is how that function works:
