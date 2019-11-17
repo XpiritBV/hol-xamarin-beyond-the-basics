@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:sessions="clr-namespace:ConferenceApp.Content.Sessions"
+       xmlns:speakers="clr-namespace:ConferenceApp.Content.Speakers"
+       xmlns:local="clr-namespace:ConferenceApp.Views"
+       xmlns:styles="clr-namespace:ConferenceApp.Styles"
+       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+       mc:Ignorable="d" Title="ConferenceApp"
+       x:Class="ConferenceApp.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource NavigationBackground}"/>
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextNavigationColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource TextNavigationColor}"/>
+                <Setter Property="Shell.UnselectedColor" Value="{DynamicResource ElementUnSelectedColor}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource NavigationBackground}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextNavigationColor}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource ElementSelectedColor}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource ElementUnSelectedColor}" />
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Your Pages -->
+    <TabBar>
+        <Tab Title="Sessions">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesome}"
+                                 Glyph="{x:Static styles:IconFont.Calendar}"
+                                 Size="18"
+                                 Color="White"/>
+            </Tab.Icon>
+            <ShellContent Title="All Sessions" Route="sessions" ios:NavigationPage.IsNavigationBarTranslucent="True" ContentTemplate="{DataTemplate sessions:SessionsPage}" />
+            <ShellContent Title="My Sessions" Route="mysessions" ios:NavigationPage.IsNavigationBarTranslucent="True" ContentTemplate="{DataTemplate sessions:MySessionsPage}" />
+        </Tab>
+        <Tab Title="Speakers">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesome}"
+                                 Glyph="{x:Static styles:IconFont.UserFriends}"
+                                 Size="18"
+                                 Color="White"/>
+            </Tab.Icon>
+            <ShellContent Route="speakers" ios:NavigationPage.IsNavigationBarTranslucent="True" ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
+        </Tab>
+    </TabBar>
+
+    <!-- Optional Templates 
+    // These may be provided inline as below or as separate classes.
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid><Label Text="Flyout Header"/></Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    // This header appears at the top of the Flyout.
+
+    // ItemTemplate is for ShellItems as displayed in a Flyout
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Title, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    // MenuItemTemplate is for MenuItems as displayed in a Flyout
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Text, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    -->
+</Shell>
