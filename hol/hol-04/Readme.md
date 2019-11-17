@@ -194,7 +194,7 @@ and now you switch back to the master branch
 
 `git checkout master`
 
-Now to still have some notifications left in the remaining labs, we can still add the shiny.notifications libraries to the project and then repeat the addition the call `   services.UseNotifications();` tot the app. NExt you can make the following change to the existing background service, so you get a notification when the background task is run.
+Now to still have some notifications left in the remaining labs, we can still add the shiny.notifications libraries to the project and then repeat the addition of the call `   services.UseNotifications();` to the app. Next you can make the following change to the existing background service, so you get a notification when the background task is run.
 
 Add the following code to the class BackgroundSyncJob:
 
@@ -206,7 +206,7 @@ public BackgroundSyncJob(ISyncService syncService, INotificationManager notifica
 }
 ```
 
-and in the `Run() method add the following line of code:
+and in the `Run()` method add the following line of code:
 
 ``` c#
 await notificationManager.Send(new Notification()
@@ -217,7 +217,7 @@ await notificationManager.Send(new Notification()
 
 ``` 
 
-Now run the applicatio again, and you will se notifications apear every time the background service job runs.
+Now run the application again, and you will see notifications apear every time the background service job runs.
 
 You can commit these changes to the master branch.
 
