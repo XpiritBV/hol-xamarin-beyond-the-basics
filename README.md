@@ -30,7 +30,7 @@ In this module, we will add some mechisms to the app so that it is more resilien
 
 ## Exercise 4 - Notifications
 
-In this lab you will add local notifications to your app using the `Shiny.Location` NuGet package.
+In this lab you will add local notifications to your app using the `Shiny.Notifications` NuGet package.
 
 [Get started with Exercise 4](./hol/hol-04/Readme.md)
 
