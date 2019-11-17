@@ -10,6 +10,8 @@ Goals for this lab:
 
 ## Setup the app to use additional Shiny NuGet Packages
 
+> Important, create a new local branch before you start this lab. We need to revert our changes after we are done with this lab, because it will interfer with our labs that work with FireBase. This is a know issue at the moment. Please use visual studio or the commandline to create a new local branch. Commandline: `git checkout -b feature/notification_lab` this will create a new branch and check out the branch.
+
 First start by adding the NuGet package `Shiny.Location` and `Shiny.Notifications` to the project `ConferenceApp`. You will find the packages by enabling the option `Include prerelease` packages with NuGet. For this ensure the following checkmark is ticked:
 
 ![include prerelease](./screenshots/add_Schiny.locations.PNG)
@@ -178,4 +180,44 @@ You will now see the following screen, where you can turn on `Improve location A
 
 After making this change, your call to `StartMonitoring` will succceed and you are now able to send changes to the gps location and watch the notifications appear.
 
+
+# Commit your local changes and swith back to the master branch
+Because in the follow-up labs we run into a versoining conflict with NuGet packages, related to the geofencing library, this is the time to commit your work to the local branch.
+
+run the commandline `git add *`
+
+next you can run the command to commit all your changes:
+
+`git commit -m "Lab finished"`
+
+and now you switch back to the master branch
+
+`git checkout master`
+
+Now to still have some notifications left in the remaining labs, we can still add the shiny.notifications libraries to the project and then repeat the addition the call `   services.UseNotifications();` tot the app. NExt you can make the following change to the existing background service, so you get a notification when the background task is run.
+
+Add the following code to the class BackgroundSyncJob:
+
+``` c#
+public BackgroundSyncJob(ISyncService syncService, INotificationManager notificationManager)
+{
+    this.syncService = syncService;
+    this.notificationManager = notificationManager;
+}
+```
+
+and in the `Run() method add the following line of code:
+
+``` c#
+await notificationManager.Send(new Notification()
+{
+    Message = "Sync job done",
+    Title = "Background Sync"
+});
+
+``` 
+
+Now run the applicatio again, and you will se notifications apear every time the background service job runs.
+
+You can commit these changes to the master branch.
 
