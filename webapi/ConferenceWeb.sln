@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceWeb", "ConferenceWeb\ConferenceWeb.csproj", "{432A44DD-C45E-492D-9658-C8BDD433C532}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{432A44DD-C45E-492D-9658-C8BDD433C532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432A44DD-C45E-492D-9658-C8BDD433C532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432A44DD-C45E-492D-9658-C8BDD433C532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432A44DD-C45E-492D-9658-C8BDD433C532}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

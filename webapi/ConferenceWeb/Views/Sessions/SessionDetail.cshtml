@@ -1,0 +1,28 @@
+﻿@model SessionDetailViewModel
+@{
+    ViewData["Title"] = Model.Session.Title;
+}
+<h2>
+    @Html.DisplayFor(m => Model.Session.Title)
+</h2>
+<p>
+    @Html.DisplayFor(m => Model.Session.Description)
+</p>
+<table>
+    <tbody>
+        @foreach (var speaker in Model.Session.Speakers) {
+            <tr>
+                <td>
+                    <img src="@speaker.ProfilePictureSmall" />
+                </td>
+                <td>
+                    @Html.ActionLink($"{speaker.FirstName} {speaker.LastName}", "speakerdetail", "speakers", new { speakerId = speaker.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(m => speaker.TagLine)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

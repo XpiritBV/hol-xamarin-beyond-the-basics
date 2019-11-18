@@ -1,0 +1,13 @@
+﻿@model SpeakerDetailViewModel
+@{
+    ViewData["Title"] = $"{Model.Speaker.FirstName} {Model.Speaker.LastName}";
+}
+<h2>
+    @Model.Speaker.FirstName @Model.Speaker.LastName
+</h2>
+<p>
+    @Model.Speaker.Bio
+</p>
+<p>
+    <img src="@Model.Speaker.ProfilePicture"/>
+</p>

@@ -1,0 +1,10 @@
+﻿[
+  {
+    "relation": [ "delegate_permission/common.handle_all_urls" ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.yourcompany.conferenceapp",
+      "sha256_cert_fingerprints": [ "07:24:CD:C8:1D:9C:50:09:05:88:A1:4F:47:6C:7F:3F:3D:97:CF:F2:DA:60:B7:86:62:D1:65:05:C1:79:DD:65" ]
+    }
+  }
+]

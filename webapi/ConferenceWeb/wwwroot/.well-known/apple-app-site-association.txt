@@ -1,0 +1,11 @@
+﻿{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "39PT865AX5.com.yourcompany.ConferenceApp",
+                "paths": [ "/sessions/*", "/speakers/*" ]
+            }
+        ]
+    }
+}

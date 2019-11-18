@@ -1,0 +1,31 @@
+﻿@model SessionsViewModel
+@{
+    ViewData["Title"] = "Sessions";
+}
+
+<h2>Sessions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Room</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var session in Model.Sessions) {
+        <tr>
+            <td id="@session.Id">
+                @Html.ActionLink(session.Title, "sessiondetail", "sessions", new { sessionId = session.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => session.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => session.Room)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

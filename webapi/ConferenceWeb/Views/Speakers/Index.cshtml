@@ -1,0 +1,31 @@
+﻿@model SpeakersViewModel
+@{
+    ViewData["Title"] = "Speakers";
+}
+
+<h2>Speakers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Bio</th>
+            <th>Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var speaker in Model.Speakers) {
+        <tr>
+            <td id="@speaker.Id">
+                @Html.ActionLink($"{speaker.FirstName} {speaker.LastName}", "speakerdetail", "speakers", new { speakerId = speaker.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => speaker.Bio)
+            </td>
+            <td>
+                <img src="@speaker.ProfilePictureSmall"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
