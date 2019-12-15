@@ -56,7 +56,7 @@
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <StackLayout Orientation="Horizontal" Padding="5">
+                        <StackLayout Orientation="Horizontal" Padding="5" AutomationId="{Binding GroupName}">
                             <Label Text="{x:Static styles:IconFont.Circle}" VerticalOptions="Center" FontFamily="{StaticResource FontAwesome}" FontSize="6" Style="{DynamicResource TextSubheadSecondary}"/>
                             <Label Text="{Binding GroupName}" Style="{DynamicResource TextSubheadSecondary}" VerticalOptions="Center" />
                             <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" Color="{DynamicResource TextSecondaryColor}" HeightRequest="2" />
@@ -78,9 +78,9 @@
                                     CornerRadius="10"
                                     HasShadow="True"
                                     InputTransparent="True">
-                                <StackLayout Spacing="10">
-                                    <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}" />
-                                    <Label Text="{Binding Room}" Style="{DynamicResource TextBody}" />
+                                <StackLayout Spacing="10" AutomationId="{Binding Id}">
+                                    <Label Text="{Binding Title}" Style="{DynamicResource TextHeadLine}" AutomationId="{Binding Title}" />
+                                    <Label Text="{Binding Room}" Style="{DynamicResource TextBody}" AutomationId="{Binding Room}"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" Orientation="Horizontal" Margin="15,0,0,0">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="models:Speaker">

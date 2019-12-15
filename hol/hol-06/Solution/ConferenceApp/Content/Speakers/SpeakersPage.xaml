@@ -70,7 +70,7 @@
                                 </Grid.RowDefinitions>
                                 <circle:CircleImage HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" Grid.Row="0" Source="{Binding ProfilePictureSmall}" />
                                 <StackLayout Grid.Row="1">
-                                    <StackLayout>
+                                    <StackLayout AutomationId="{Binding FirstName}">
                                         <Label Style="{DynamicResource TextTitle}"
                                                 HorizontalTextAlignment="Center">
                                             <Label.FormattedText>
